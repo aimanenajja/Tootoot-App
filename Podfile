@@ -7,4 +7,6 @@ target 'Tootoot' do
 
   # Pods for Tootoot
   pod 'Firebase/Core'
+  pod 'Firebase/Database'
+
 end
