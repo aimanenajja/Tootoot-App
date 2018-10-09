@@ -64,7 +64,7 @@
                                 <size key="shadowOffset" width="2" height="5"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="username" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="NBU-Kc-Ycx">
-                                <rect key="frame" x="166" y="333" width="76" height="21"/>
+                                <rect key="frame" x="139" y="495" width="182" height="21"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
@@ -82,7 +82,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-119" y="-143"/>
+            <point key="canvasLocation" x="-119.2" y="-143.47826086956522"/>
         </scene>
         <!--Table View Controller-->
         <scene sceneID="E5J-kW-2BE">

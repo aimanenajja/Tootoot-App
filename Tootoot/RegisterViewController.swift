@@ -61,8 +61,7 @@ class RegisterViewController: UIViewController {
                     self.performSegue(withIdentifier: "signInSuccesful", sender: self)
                 }
                 else {
-                    let errCode = AuthErrorNameKey
-                    let alert = UIAlertController(title: "Error", message: errCode, preferredStyle: .alert)
+                    let alert = UIAlertController(title: "Error", message: error!.localizedDescription, preferredStyle: .alert)
                     
                     alert.addAction(UIAlertAction(title: "Ok", style: .default, handler: nil))
                     self.present(alert, animated: true)
@@ -83,8 +82,7 @@ class RegisterViewController: UIViewController {
                     self.performSegue(withIdentifier: "signInSuccesful", sender: self)
                 }
                 else {
-                    let errCode = AuthErrorNameKey
-                    let alert = UIAlertController(title: "Error", message: errCode, preferredStyle: .alert)
+                    let alert = UIAlertController(title: "Error", message: error!.localizedDescription, preferredStyle: .alert)
                     
                     alert.addAction(UIAlertAction(title: "Ok", style: .default, handler: nil))
                     self.present(alert, animated: true)
