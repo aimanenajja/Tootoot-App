@@ -31,6 +31,7 @@ class RegisterViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         ref = Database.database().reference()
+     self.navigationController?.setNavigationBarHidden(false, animated: false)
 
         // Do any additional setup after loading the view.
     }
