@@ -41,6 +41,7 @@ class AddCarController: UIViewController {
         if let user = user {
             let uid = user.uid
             let model = carModel.text
+           self.ref.child("cars").child(uid).setValue(model)
             self.ref.child("cars").child(uid).child(model!).setValue(["Seats":carSeats.text,"Colour": carColour.text])
         }
         
