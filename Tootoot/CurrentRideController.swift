@@ -7,12 +7,29 @@
 //
 
 import UIKit
+import Firebase
 
 class CurrentRideController: UIViewController {
 
+
+    @IBOutlet weak var destination: UILabel!
+    var ref: DatabaseReference!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        ref = Database.database().reference()
+        let userID = Auth.auth().currentUser?.uid
+        ref.child("rides").child(userID!).observeSingleEvent(of: .value, with: { (snapshot) in
+            // Get user value
+            let value = snapshot.value as? NSDictionary
+            print(value)
+            let destination = value?["endLocation"] as? String ?? ""
+            
+            self.destination.text = "Destination: " + destination
+        }) { (error) in
+            print(error.localizedDescription)
+        }
+        
         // Do any additional setup after loading the view.
     }
     
