@@ -44,12 +44,6 @@ class ViewController: UIViewController {
         
     }
 
-    @IBAction func testDB(_ sender: UIButton) {
-        self.ref.child("users").child("dervis").setValue(["username": "dervistest"])
-    }
     
-    @IBAction func testDB2(_ sender: UIButton) {
-        self.ref.child("users/\("dervis")/username").setValue("abcdefg")
-    }
 }
 

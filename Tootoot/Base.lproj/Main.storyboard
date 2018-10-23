@@ -62,7 +62,6 @@
                                                     </userDefinedRuntimeAttribute>
                                                 </userDefinedRuntimeAttributes>
                                                 <connections>
-                                                    <action selector="testDB2:" destination="BYZ-38-t0r" eventType="touchUpInside" id="AE8-B3-SRK"/>
                                                     <segue destination="TeN-dc-JjI" kind="show" id="0sO-cP-nk3"/>
                                                 </connections>
                                             </button>
@@ -612,6 +611,9 @@
                                                         <date key="date" timeIntervalSinceReferenceDate="561976709.11869895">
                                                             <!--2018-10-23 08:38:29 +0000-->
                                                         </date>
+                                                        <connections>
+                                                            <action selector="startTimeChanged:" destination="TeN-dc-JjI" eventType="valueChanged" id="jKx-sT-94f"/>
+                                                        </connections>
                                                     </datePicker>
                                                 </subviews>
                                                 <constraints>
@@ -636,6 +638,9 @@
                                                         <date key="date" timeIntervalSinceReferenceDate="561977195.68838406">
                                                             <!--2018-10-23 08:46:35 +0000-->
                                                         </date>
+                                                        <connections>
+                                                            <action selector="endTimeChanged:" destination="TeN-dc-JjI" eventType="valueChanged" id="kA5-mg-mNO"/>
+                                                        </connections>
                                                     </datePicker>
                                                 </subviews>
                                                 <constraints>
@@ -706,6 +711,7 @@
                                                     <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 </state>
                                                 <connections>
+                                                    <action selector="placeRide:" destination="TeN-dc-JjI" eventType="touchUpInside" id="ddU-oX-tDI"/>
                                                     <segue destination="KdY-Kg-nu5" kind="show" id="Ima-1U-T4n"/>
                                                 </connections>
                                             </button>
@@ -753,6 +759,8 @@
                     </view>
                     <connections>
                         <outlet property="carTextField" destination="CZB-Sm-wAR" id="YuS-3j-f6q"/>
+                        <outlet property="comments" destination="SgC-ig-J1j" id="xAK-yB-3Ki"/>
+                        <outlet property="endLocation" destination="ref-HA-u17" id="d28-9t-jZx"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="1Eq-AW-Z7A" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -780,7 +788,10 @@
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Destination" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Lxv-AB-TaV">
-                                        <rect key="frame" x="126.5" y="58" width="87" height="21"/>
+                                        <rect key="frame" x="94.5" y="58" width="150" height="21"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="150" id="ngj-xG-jqQ"/>
+                                        </constraints>
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
@@ -894,13 +905,13 @@
                                     <constraint firstItem="Lxv-AB-TaV" firstAttribute="top" secondItem="tPh-AI-vbz" secondAttribute="bottom" constant="8" symbolic="YES" id="8DZ-jd-Le8"/>
                                     <constraint firstItem="tPh-AI-vbz" firstAttribute="top" secondItem="Hxe-3z-IS9" secondAttribute="topMargin" id="Bx4-SN-AB2"/>
                                     <constraint firstItem="SeH-yh-ujF" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="Hxe-3z-IS9" secondAttribute="leading" symbolic="YES" id="FKX-es-xcB"/>
+                                    <constraint firstItem="Lxv-AB-TaV" firstAttribute="centerX" secondItem="Hxe-3z-IS9" secondAttribute="centerX" id="FLY-i6-4va"/>
                                     <constraint firstAttribute="bottom" secondItem="SeH-yh-ujF" secondAttribute="bottom" constant="42" id="GeD-WH-0pv"/>
                                     <constraint firstItem="SeH-yh-ujF" firstAttribute="top" secondItem="VrP-IH-TlU" secondAttribute="bottom" constant="28" id="Iok-cy-KOp"/>
                                     <constraint firstItem="VrP-IH-TlU" firstAttribute="leading" secondItem="Hxe-3z-IS9" secondAttribute="leading" constant="5" id="Kmy-Xu-swE"/>
                                     <constraint firstItem="VrP-IH-TlU" firstAttribute="top" secondItem="kmA-ah-9q2" secondAttribute="bottom" constant="44" id="b67-lg-Jf3"/>
-                                    <constraint firstItem="Lxv-AB-TaV" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="Hxe-3z-IS9" secondAttribute="leading" symbolic="YES" id="cdy-UI-0es"/>
+                                    <constraint firstItem="Lxv-AB-TaV" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="Hxe-3z-IS9" secondAttribute="leading" constant="20" symbolic="YES" id="cdy-UI-0es"/>
                                     <constraint firstAttribute="trailing" secondItem="SeH-yh-ujF" secondAttribute="trailing" constant="139" id="emU-2J-Fjc"/>
-                                    <constraint firstAttribute="trailing" secondItem="Lxv-AB-TaV" secondAttribute="trailing" constant="125.5" id="wpU-pm-dMn"/>
                                     <constraint firstItem="kmA-ah-9q2" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="Hxe-3z-IS9" secondAttribute="leading" symbolic="YES" id="xeg-FF-i2s"/>
                                 </constraints>
                             </view>
@@ -918,6 +929,9 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="IJK-cs-CTV"/>
                     </view>
+                    <connections>
+                        <outlet property="destination" destination="Lxv-AB-TaV" id="C7Z-4e-IKX"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Aiv-kC-0ha" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -955,8 +969,8 @@
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="6ju-OW-J5D">
                                 <rect key="frame" x="16" y="84" width="342" height="499"/>
                                 <subviews>
-                                    <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="1n1-mO-f6Z">
-                                        <rect key="frame" x="-9" y="-9" width="360" height="500"/>
+                                    <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="1n1-mO-f6Z">
+                                        <rect key="frame" x="-9" y="-9" width="360" height="508"/>
                                         <subviews>
                                             <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="ZBI-Rc-vSF">
                                                 <rect key="frame" x="115.5" y="20.5" width="129" height="29"/>
@@ -1057,14 +1071,30 @@
                                                     <constraint firstAttribute="width" constant="320" id="B9v-er-lfB"/>
                                                 </constraints>
                                             </stackView>
+                                            <stackView opaque="NO" contentMode="scaleToFill" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="dEN-L9-Z5P">
+                                                <rect key="frame" x="81" y="349" width="198" height="31"/>
+                                                <subviews>
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Remember email?" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hV9-TD-11q">
+                                                        <rect key="frame" x="0.0" y="0.0" width="144" height="31"/>
+                                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                        <nil key="textColor"/>
+                                                        <nil key="highlightedColor"/>
+                                                    </label>
+                                                    <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" horizontalCompressionResistancePriority="751" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="3Pr-VY-Rwa">
+                                                        <rect key="frame" x="149" y="0.0" width="51" height="31"/>
+                                                    </switch>
+                                                </subviews>
+                                            </stackView>
                                         </subviews>
                                         <constraints>
                                             <constraint firstItem="0xU-Od-0yO" firstAttribute="top" secondItem="1n1-mO-f6Z" secondAttribute="top" constant="206" id="49e-cS-c9r"/>
                                             <constraint firstItem="NGA-w9-o9l" firstAttribute="top" secondItem="o7w-wZ-ExT" secondAttribute="bottom" constant="82" id="4aP-BR-0fB"/>
                                             <constraint firstItem="0xU-Od-0yO" firstAttribute="centerX" secondItem="ZBI-Rc-vSF" secondAttribute="centerX" id="8Td-OS-wNk"/>
                                             <constraint firstAttribute="bottom" secondItem="0xU-Od-0yO" secondAttribute="bottom" constant="273" id="8jy-YN-jho"/>
+                                            <constraint firstItem="dEN-L9-Z5P" firstAttribute="leading" secondItem="1n1-mO-f6Z" secondAttribute="leading" constant="81" id="E31-gc-Xv0"/>
                                             <constraint firstItem="0xU-Od-0yO" firstAttribute="top" secondItem="W7H-9e-zJe" secondAttribute="bottom" constant="42" id="Gye-pQ-Zpf"/>
                                             <constraint firstItem="0xU-Od-0yO" firstAttribute="centerX" secondItem="hBX-6K-iUP" secondAttribute="centerX" id="HQq-Mh-iKU"/>
+                                            <constraint firstItem="dEN-L9-Z5P" firstAttribute="centerX" secondItem="1n1-mO-f6Z" secondAttribute="centerX" id="Qeq-FY-aDv"/>
                                             <constraint firstItem="W7H-9e-zJe" firstAttribute="leading" secondItem="1n1-mO-f6Z" secondAttribute="leading" constant="20" id="TmH-V7-f4i"/>
                                             <constraint firstAttribute="trailing" secondItem="0xU-Od-0yO" secondAttribute="trailing" constant="20" id="UcU-1l-fXc"/>
                                             <constraint firstItem="o7w-wZ-ExT" firstAttribute="top" secondItem="0xU-Od-0yO" secondAttribute="bottom" constant="48" id="UsG-G6-0dM"/>
@@ -1074,6 +1104,7 @@
                                             <constraint firstItem="W7H-9e-zJe" firstAttribute="top" secondItem="hBX-6K-iUP" secondAttribute="bottom" constant="24" id="qJB-n6-CXt"/>
                                             <constraint firstItem="hBX-6K-iUP" firstAttribute="top" secondItem="ZBI-Rc-vSF" secondAttribute="bottom" constant="41" id="sGY-dg-cPk"/>
                                             <constraint firstItem="0xU-Od-0yO" firstAttribute="leading" secondItem="o7w-wZ-ExT" secondAttribute="leading" id="ssY-TU-TSZ"/>
+                                            <constraint firstItem="NGA-w9-o9l" firstAttribute="top" secondItem="dEN-L9-Z5P" secondAttribute="bottom" constant="16" id="zgc-0X-syc"/>
                                         </constraints>
                                     </scrollView>
                                 </subviews>
@@ -1102,6 +1133,7 @@
                         <outlet property="emailTextField" destination="mB9-An-2U6" id="CCD-TU-AVn"/>
                         <outlet property="nameField" destination="W7H-9e-zJe" id="pcZ-NH-ny8"/>
                         <outlet property="passwordTextField" destination="ppA-Hw-iyg" id="wn1-4k-Y2U"/>
+                        <outlet property="remember" destination="3Pr-VY-Rwa" id="nFe-78-G6A"/>
                         <outlet property="signInButton" destination="NGA-w9-o9l" id="C2P-6G-5Dw"/>
                         <outlet property="signInLabel" destination="hBX-6K-iUP" id="7j0-4W-C2u"/>
                         <outlet property="signInSelector" destination="ZBI-Rc-vSF" id="SzW-tr-nXq"/>
@@ -1115,7 +1147,7 @@
         </scene>
     </scenes>
     <resources>
-        <image name="Hamburger_icon.svg" width="220" height="220"/>
+        <image name="Hamburger_icon.svg" width="110" height="110"/>
         <image name="Launchscreen" width="500" height="889"/>
     </resources>
     <inferredMetricsTieBreakers>
