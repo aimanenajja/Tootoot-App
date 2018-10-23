@@ -15,8 +15,11 @@ class RegisterViewController: UIViewController {
 
       var ref: DatabaseReference!
     
+    let defaults = UserDefaults.standard
+    
     @IBOutlet weak var signInSelector: UISegmentedControl!
     
+    @IBOutlet weak var remember: UISwitch!
     @IBOutlet weak var signInLabel: UILabel!
     
     @IBOutlet weak var usernameTextField: UITextField!
@@ -31,8 +34,11 @@ class RegisterViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         ref = Database.database().reference()
-     self.navigationController?.setNavigationBarHidden(false, animated: false)
-
+        let email = defaults.string(forKey: "Email")
+        if !(email == ""){
+            emailTextField.text = email}
+    self.navigationController?.setNavigationBarHidden(false, animated: false)
+        
         // Do any additional setup after loading the view.
     }
     
@@ -55,7 +61,11 @@ class RegisterViewController: UIViewController {
         if isSignIn{
             Auth.auth().signIn(withEmail: email, password: pass) { (authDataResult: AuthDataResult?  , error) in
                 
-                
+                if self.remember.isOn{
+                    self.defaults.set(email, forKey: "Email")
+                } else {
+                    self.defaults.set(email, forKey: "")
+                }
                 
                 if let user = authDataResult {
                     
@@ -77,6 +87,9 @@ class RegisterViewController: UIViewController {
                     
                    let userUid = user.user.uid
                    let email = user.user.email
+                    
+                    self.defaults.set(email, forKey: "Email")
+                    
                     let name = self.usernameTextField.text
                     self.ref.child("users").child(userUid).setValue(["email": email, "username": name ])
                     
