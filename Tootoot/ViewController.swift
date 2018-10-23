@@ -30,7 +30,7 @@ class ViewController: UIViewController {
             print(value)
             let username = value?["username"] as? String ?? ""
             
-            self.usernameLabel.text = "Welkom" + username
+            self.usernameLabel.text = "Welkom, " + username
         }) { (error) in
             print(error.localizedDescription)
         }
