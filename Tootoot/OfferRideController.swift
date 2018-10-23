@@ -43,7 +43,7 @@ class OfferRideController: UIViewController {
             let car = self.carTextField.text
             let comments = self.comments.text
             
-            self.ref.child("rides").setValue(uid)
+            
             self.ref.child("rides").child(uid).setValue(["endLocation":endLocation, "endTime": endTime,"startTime": startTime,"car":car,"comments":comments])
         }
     }
