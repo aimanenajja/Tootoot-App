@@ -34,17 +34,12 @@ class OfferRideController: UIViewController, CLLocationManagerDelegate {
             locationManager.delegate = self
             locationManager.desiredAccuracy = kCLLocationAccuracyNearestTenMeters
             locationManager.requestLocation()
+            print("locations = \(locLong) \(locLat)")
             
         }
         
-        let location = CLLocation(latitude: locLat, longitude: locLong)
-        
-        // Geocode Location
-        geocoder.reverseGeocodeLocation(location) { (placemarks, error) in
-            // Process Response
-            self.processResponse(withPlacemarks: placemarks, error: error)
-        }
-        
+        location = CLLocation(latitude: locLat, longitude: locLong)
+
     }
  
     func locationManager(_ manager: CLLocationManager, didChangeAuthorization status: CLAuthorizationStatus) {
@@ -60,6 +55,11 @@ class OfferRideController: UIViewController, CLLocationManagerDelegate {
         locLong = locValue.longitude
         locLat = locValue.latitude
         location = CLLocation(latitude: locLat, longitude: locLong)
+        // Geocode Location
+        geocoder.reverseGeocodeLocation(location) { (placemarks, error) in
+            // Process Response
+            self.processResponse(withPlacemarks: placemarks, error: error)
+        }
     }
     
     func locationManager(_ manager: CLLocationManager, didFailWithError error: Error) {

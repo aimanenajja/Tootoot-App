@@ -1379,7 +1379,7 @@
         </scene>
     </scenes>
     <resources>
-        <image name="Hamburger_icon.svg" width="220" height="220"/>
+        <image name="Hamburger_icon.svg" width="110" height="110"/>
         <image name="Launchscreen" width="500" height="889"/>
     </resources>
     <inferredMetricsTieBreakers>
