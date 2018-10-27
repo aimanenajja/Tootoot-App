@@ -7,16 +7,20 @@
 //
 
 import UIKit
+import os.log
 
 class JoinRideTableViewController: UITableViewController {
-
+    
     //MARK: Properties
     
     var rides = [Ride]()
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
+        tableView.backgroundView = UIImageView(image: UIImage(named: "Launchscreen"))
+        self.title = "Join Ride"
+        
         // Load the sample data.
         loadSampleRides()
     }
@@ -38,7 +42,7 @@ class JoinRideTableViewController: UITableViewController {
         // Fetches the appropriate meal for the data source layout.
         let ride = rides[indexPath.row]
         
-        cell.distanceLabel.text = ride.distance
+        //cell.distanceLabel.text = ride.distance //Dervis location impl
         cell.startTimeLabel.text = ride.startTime
         cell.destinationLabel.text = ride.destination
         cell.seatsLabel.text = ride.seats
@@ -46,20 +50,42 @@ class JoinRideTableViewController: UITableViewController {
         return cell
     }
     
+    //MARK: - Navigation
+    
+    // In a storyboard-based application, you will often want to do a little preparation before navigation
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        super.prepare(for: segue, sender: sender)
+        
+        guard let rideDetailViewController = segue.destination as? RideDetailViewController else {
+            fatalError("Unexpected destination: \(segue.destination)")
+        }
+        
+        guard let selectedRideCell = sender as? RideTableViewCell else {
+            fatalError("Unexpected sender: \(sender)")
+        }
+        
+        guard let indexPath = tableView.indexPath(for: selectedRideCell) else {
+            fatalError("The selected cell is not being displayed by the table")
+        }
+        
+        let selectedRide = rides[indexPath.row]
+        rideDetailViewController.ride = selectedRide
+    }
+    
     //MARK: Private Methods
     private func loadSampleRides() {
-        guard let ride1 = Ride(distance: "1,9 km", startTime: "07:30u", destination: "Hasselt", seats: "4") else {
+        guard let ride1 = Ride(driver: "Emre", car: "Hyundai i30", beginLocation: "Mol", destination: "Hasselt", startTime: "07:00u", seats: "4") else {
             fatalError("Unable to instantiate ride1")
         }
-        guard let ride2 = Ride(distance: "2,6 km", startTime: "04:30u", destination: "Diepenbeek", seats: "4") else {
+        guard let ride2 = Ride(driver: "Burak", car: "Renault Clio", beginLocation: "Maasmechelen", destination: "Hasselt", startTime: "07:30u", seats: "4") else {
             fatalError("Unable to instantiate ride1")
         }
-        guard let ride3 = Ride(distance: "5,5 km", startTime: "08:30u", destination: "Leuven", seats: "4") else {
+        guard let ride3 = Ride(driver: "Deniz", car: "BMW 118d", beginLocation: "Beringen", destination: "Hasselt", startTime: "07:30u", seats: "4") else {
             fatalError("Unable to instantiate ride1")
         }
         
         rides += [ride1, ride2, ride3]
         
     }
-
+    
 }
