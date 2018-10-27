@@ -79,7 +79,6 @@
 		8285212A2163A2D400AF301A /* Tootoot */ = {
 			isa = PBXGroup;
 			children = (
-				738F12342184FF2400123D3D /* RideDetailViewController.swift */,
 				82ED3CA6217F53040042FFBC /* OfferRideController.swift */,
 				738F1223217679D800123D3D /* AddCarController.swift */,
 				8285212B2163A2D400AF301A /* AppDelegate.swift */,
@@ -87,6 +86,7 @@
 				732581C9216981FC0022CB27 /* RegisterViewController.swift */,
 				738F1228217E5AAC00123D3D /* CurrentRideController.swift */,
 				82ED3CA8217F53E10042FFBC /* JoinRideTableViewController.swift */,
+				738F12342184FF2400123D3D /* RideDetailViewController.swift */,
 				82ED3CA0217F3D7D0042FFBC /* RideTableViewCell.swift */,
 				82ED3CAA217F555D0042FFBC /* Ride.swift */,
 				8285212F2163A2D400AF301A /* Main.storyboard */,
