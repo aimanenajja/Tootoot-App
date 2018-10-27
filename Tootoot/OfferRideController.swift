@@ -20,8 +20,9 @@ class OfferRideController: UIViewController, CLLocationManagerDelegate {
     let locationManager = CLLocationManager()
     var locLat : Double = 0
     var locLong : Double = 0
-    
+    var location = CLLocation(latitude: 0, longitude: 0)
     var address: String = ""
+    lazy var geocoder = CLGeocoder()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -35,6 +36,15 @@ class OfferRideController: UIViewController, CLLocationManagerDelegate {
             locationManager.requestLocation()
             
         }
+        
+        let location = CLLocation(latitude: locLat, longitude: locLong)
+        
+        // Geocode Location
+        geocoder.reverseGeocodeLocation(location) { (placemarks, error) in
+            // Process Response
+            self.processResponse(withPlacemarks: placemarks, error: error)
+        }
+        
     }
  
     func locationManager(_ manager: CLLocationManager, didChangeAuthorization status: CLAuthorizationStatus) {
@@ -49,7 +59,7 @@ class OfferRideController: UIViewController, CLLocationManagerDelegate {
         print("locations = \(locValue.latitude) \(locValue.longitude)")
         locLong = locValue.longitude
         locLat = locValue.latitude
-        var location = CLLocation(latitude: locLat, longitude: locLong)
+        location = CLLocation(latitude: locLat, longitude: locLong)
     }
     
     func locationManager(_ manager: CLLocationManager, didFailWithError error: Error) {
@@ -70,7 +80,8 @@ class OfferRideController: UIViewController, CLLocationManagerDelegate {
     }
     @IBAction func placeRide(_ sender: UIButton) {
 
-            
+      
+        
             let user = Auth.auth().currentUser
             if let user = user {
                 let uid = user.uid
@@ -82,6 +93,22 @@ class OfferRideController: UIViewController, CLLocationManagerDelegate {
                 
             }
         }
+    
+    private func processResponse(withPlacemarks placemarks: [CLPlacemark]?, error: Error?) {
+        // Update View
+        if let error = error {
+            print("Unable to Reverse Geocode Location (\(error))")
+            address = "Unable to Find Address for Location"
+            
+        } else {
+            if let placemarks = placemarks, let placemark = placemarks.first {
+                address = placemark.compactAddress ?? "default value"
+            } else {
+                address = "No Matching Addresses Found"
+            }
+        }
+        
+    }
         /*
          // MARK: - Navigation
          
@@ -96,4 +123,30 @@ class OfferRideController: UIViewController, CLLocationManagerDelegate {
         
         
     }
+
+extension CLPlacemark {
+    
+    var compactAddress: String? {
+        if let name = name {
+            var result = name
+            
+            if let street = thoroughfare {
+                result += ", \(street)"
+            }
+            
+            if let city = locality {
+                result += ", \(city)"
+            }
+            
+            if let country = country {
+                result += ", \(country)"
+            }
+            
+            return result
+        }
+        
+        return nil
+    }
+    
+}
 
