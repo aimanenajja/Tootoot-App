@@ -12,7 +12,7 @@ import FirebaseAuth
 import FirebaseDatabase
 
 
-class ViewController: UIViewController {
+class HomeViewController: UIViewController {
     @IBOutlet weak var usernameLabel: UILabel!
     
     var ref: DatabaseReference!
@@ -35,7 +35,8 @@ class ViewController: UIViewController {
             print(error.localizedDescription)
         }
         
-
+        self.title = "Home"
+        
         }
     
     override func viewWillDisappear(_ animated: Bool) {
