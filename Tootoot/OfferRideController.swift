@@ -22,6 +22,7 @@ class OfferRideController: UIViewController, CLLocationManagerDelegate {
     var locLong : Double = 0
     var location = CLLocation(latitude: 0, longitude: 0)
     var address: String = ""
+    var username: String = ""
     lazy var geocoder = CLGeocoder()
     
     override func viewDidLoad() {
@@ -39,9 +40,23 @@ class OfferRideController: UIViewController, CLLocationManagerDelegate {
         }
         
         location = CLLocation(latitude: locLat, longitude: locLong)
+        
+        let user = Auth.auth().currentUser
+        if let user = user {
+            let uid = user.uid
+            ref.child("users").child(uid).observeSingleEvent(of: .value, with: { (snapshot) in
+                // Get user value
+                let value = snapshot.value as? NSDictionary
+                print(value)
+                self.username = value?["username"] as? String ?? ""
+                
+            }) { (error) in
+                print(error.localizedDescription)
+            }
 
     }
- 
+    
+    }
     func locationManager(_ manager: CLLocationManager, didChangeAuthorization status: CLAuthorizationStatus) {
         if status == .authorizedWhenInUse {
             locationManager.requestLocation()
@@ -85,11 +100,12 @@ class OfferRideController: UIViewController, CLLocationManagerDelegate {
             let user = Auth.auth().currentUser
             if let user = user {
                 let uid = user.uid
+                print(username)
                 let endLocation = self.endLocation.text
                 let car = self.carTextField.text
                 let comments = self.comments.text
-                locationManager.requestLocation()
-                self.ref.child("rides").child(uid).setValue(["endLocation":endLocation, "endTime": endTime,"startTime": startTime,"car":car,"comments":comments, "Longitude": locLong, "Latitude": locLat, "address": address])
+                
+                self.ref.child("rides").child(uid).setValue(["driver":username,  "endLocation":endLocation, "endTime": endTime,"startTime": startTime,"car":car,"comments":comments, "longitude": locLong, "latitude": locLat, "address": address])
                 
             }
         }
@@ -122,7 +138,8 @@ class OfferRideController: UIViewController, CLLocationManagerDelegate {
         
         
         
-    }
+    
+}
 
 extension CLPlacemark {
     
