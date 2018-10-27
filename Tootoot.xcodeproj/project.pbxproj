@@ -8,7 +8,6 @@
 
 /* Begin PBXBuildFile section */
 		732581CA216981FC0022CB27 /* RegisterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 732581C9216981FC0022CB27 /* RegisterViewController.swift */; };
-		738F1224217679D800123D3D /* AddCarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 738F1223217679D800123D3D /* AddCarController.swift */; };
 		738F1229217E5AAC00123D3D /* CurrentRideController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 738F1228217E5AAC00123D3D /* CurrentRideController.swift */; };
 		73FF27E2216861950072F220 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 73FF27E1216861950072F220 /* GoogleService-Info.plist */; };
 		8285212C2163A2D400AF301A /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8285212B2163A2D400AF301A /* AppDelegate.swift */; };
@@ -28,7 +27,6 @@
 		3013EB88243C1861F04F2CD1 /* Pods_Tootoot.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Tootoot.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		425A106CDEF6FBFA56D6D62B /* Pods-Tootoot.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Tootoot.release.xcconfig"; path = "Pods/Target Support Files/Pods-Tootoot/Pods-Tootoot.release.xcconfig"; sourceTree = "<group>"; };
 		732581C9216981FC0022CB27 /* RegisterViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterViewController.swift; sourceTree = "<group>"; };
-		738F1223217679D800123D3D /* AddCarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddCarController.swift; sourceTree = "<group>"; };
 		738F1228217E5AAC00123D3D /* CurrentRideController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrentRideController.swift; sourceTree = "<group>"; };
 		73FF27E1216861950072F220 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		828521282163A2D400AF301A /* Tootoot.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Tootoot.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -78,7 +76,6 @@
 			isa = PBXGroup;
 			children = (
 				82ED3CA6217F53040042FFBC /* OfferRideController.swift */,
-				738F1223217679D800123D3D /* AddCarController.swift */,
 				8285212B2163A2D400AF301A /* AppDelegate.swift */,
 				8285212D2163A2D400AF301A /* ViewController.swift */,
 				732581C9216981FC0022CB27 /* RegisterViewController.swift */,
@@ -242,7 +239,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				738F1224217679D800123D3D /* AddCarController.swift in Sources */,
 				732581CA216981FC0022CB27 /* RegisterViewController.swift in Sources */,
 				82ED3CA9217F53E10042FFBC /* JoinRideTableViewController.swift in Sources */,
 				738F1229217E5AAC00123D3D /* CurrentRideController.swift in Sources */,

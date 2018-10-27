@@ -35,9 +35,16 @@ class RegisterViewController: UIViewController {
         super.viewDidLoad()
         ref = Database.database().reference()
         let email = defaults.string(forKey: "Email")
-        if !(email == ""){
+        if !(email == "") && self.remember.isOn{
             emailTextField.text = email}
-    self.navigationController?.setNavigationBarHidden(false, animated: false)
+        
+        do {
+            try Auth.auth().signOut()
+        } catch let signOutError as NSError {
+            print ("Error signing out: %@", signOutError)
+        }
+        
+        
         
         // Do any additional setup after loading the view.
     }
@@ -64,10 +71,10 @@ class RegisterViewController: UIViewController {
                 if self.remember.isOn{
                     self.defaults.set(email, forKey: "Email")
                 } else {
-                    self.defaults.set(email, forKey: "")
+                    self.defaults.set(email, forKey: " ")
                 }
                 
-                if let user = authDataResult {
+                if authDataResult != nil {
                     
                     self.performSegue(withIdentifier: "signInSuccesful", sender: self)
                 }
@@ -87,9 +94,9 @@ class RegisterViewController: UIViewController {
                     
                    let userUid = user.user.uid
                    let email = user.user.email
-                    
+                    if self.remember.isOn{
                     self.defaults.set(email, forKey: "Email")
-                    
+                    }
                     let name = self.usernameTextField.text
                     self.ref.child("users").child(userUid).setValue(["email": email, "username": name ])
                     
