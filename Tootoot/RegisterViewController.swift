@@ -37,6 +37,9 @@ class RegisterViewController: UIViewController {
         let email = defaults.string(forKey: "Email")
         if !(email == "") && self.remember.isOn{
             emailTextField.text = email}
+<<<<<<< HEAD
+        self.navigationController?.setNavigationBarHidden(false, animated: false)
+=======
         
         do {
             try Auth.auth().signOut()
@@ -45,7 +48,9 @@ class RegisterViewController: UIViewController {
         }
         
         
+>>>>>>> 23961090af3f85f752bd82a794c4f1c7f91a75ab
         
+        self.title = "Tootoot"
         // Do any additional setup after loading the view.
     }
     

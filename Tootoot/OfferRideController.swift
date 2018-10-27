@@ -26,7 +26,15 @@ class OfferRideController: UIViewController, CLLocationManagerDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         ref = Database.database().reference()
+<<<<<<< HEAD
         
+=======
+<<<<<<< HEAD
+        
+        self.title = "Offer Ride"
+=======
+        self.locationManager.requestWhenInUseAuthorization()
+>>>>>>> f6b930aa7c91c82201eec945a4ffbf87cb77afbc
         
         if CLLocationManager.locationServicesEnabled() {
             
@@ -38,6 +46,7 @@ class OfferRideController: UIViewController, CLLocationManagerDelegate {
         }
         
 
+>>>>>>> 23961090af3f85f752bd82a794c4f1c7f91a75ab
         // Do any additional setup after loading the view.
     
     
