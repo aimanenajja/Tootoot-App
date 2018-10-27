@@ -44,7 +44,6 @@
                                                     </userDefinedRuntimeAttribute>
                                                 </userDefinedRuntimeAttributes>
                                                 <connections>
-                                                    <action selector="testDB:" destination="BYZ-38-t0r" eventType="touchUpInside" id="dcK-C8-mLO"/>
                                                     <segue destination="k5l-EM-w4Q" kind="show" id="sND-h1-g2q"/>
                                                 </connections>
                                             </button>
