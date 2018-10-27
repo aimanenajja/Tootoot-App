@@ -10,32 +10,25 @@ import UIKit
 
 class Ride: NSObject {
     
-    var driver: String
-    var car: String
-    var beginLocation: String
-    var destination: String
+    var distance: String
     var startTime: String
+    var destination: String
     var seats: String
     
-    init?(driver: String, car: String, beginLocation: String,
-          destination: String, startTime: String,  seats: String) {
+    init?(distance: String, startTime: String, destination: String, seats: String) {
         // Initialization should fail if there is no name or if the rating is negative.
-        if driver.isEmpty || car.isEmpty || beginLocation.isEmpty ||
-            destination.isEmpty || startTime.isEmpty || seats.isEmpty  {
+        if distance.isEmpty || startTime.isEmpty || destination.isEmpty || seats.isEmpty  {
             return nil
         }
         // The variables must not be empty
-        guard !driver.isEmpty || !car.isEmpty || !beginLocation.isEmpty ||
-            !destination.isEmpty || !startTime.isEmpty || !seats.isEmpty else {
+        guard !distance.isEmpty || !startTime.isEmpty || !destination.isEmpty || !seats.isEmpty else {
             return nil
         }
         
         // Initialize stored properties.
-        self.driver = driver
-        self.car = car
-        self.beginLocation = beginLocation
-        self.destination = destination
+        self.distance = distance
         self.startTime = startTime
+        self.destination = destination
         self.seats = seats
     }
     

@@ -20,8 +20,7 @@ class OfferRideController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         ref = Database.database().reference()
-        
-        self.title = "Offer Ride"
+
         // Do any additional setup after loading the view.
     }
     

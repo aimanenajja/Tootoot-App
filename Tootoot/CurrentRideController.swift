@@ -30,8 +30,6 @@ class CurrentRideController: UIViewController {
             print(error.localizedDescription)
         }
         
-        self.title = "Current Ride"
-        
         // Do any additional setup after loading the view.
     }
     

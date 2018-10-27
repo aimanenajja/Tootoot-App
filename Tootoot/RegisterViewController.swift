@@ -37,9 +37,8 @@ class RegisterViewController: UIViewController {
         let email = defaults.string(forKey: "Email")
         if !(email == ""){
             emailTextField.text = email}
-        self.navigationController?.setNavigationBarHidden(false, animated: false)
+    self.navigationController?.setNavigationBarHidden(false, animated: false)
         
-        self.title = "Tootoot"
         // Do any additional setup after loading the view.
     }
     
