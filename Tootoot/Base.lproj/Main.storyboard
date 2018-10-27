@@ -576,6 +576,9 @@
                             <outlet property="delegate" destination="k5l-EM-w4Q" id="YEt-9f-MNY"/>
                         </connections>
                     </tableView>
+                    <connections>
+                        <outlet property="JoinRideTableView" destination="XRH-vx-n5u" id="T5s-2l-hto"/>
+                    </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="IYu-kg-vm5" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -1379,7 +1382,7 @@
         </scene>
     </scenes>
     <resources>
-        <image name="Hamburger_icon.svg" width="110" height="110"/>
+        <image name="Hamburger_icon.svg" width="220" height="220"/>
         <image name="Launchscreen" width="500" height="889"/>
     </resources>
     <inferredMetricsTieBreakers>

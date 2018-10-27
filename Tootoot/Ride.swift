@@ -16,17 +16,18 @@ class Ride: NSObject {
     var destination: String
     var startTime: String
     var seats: String
+    var comments: String
     
     init?(driver: String, car: String, beginLocation: String,
-          destination: String, startTime: String,  seats: String) {
+          destination: String, startTime: String,  seats: String, comments: String) {
         // Initialization should fail if there is no name or if the rating is negative.
         if driver.isEmpty || car.isEmpty || beginLocation.isEmpty ||
-            destination.isEmpty || startTime.isEmpty || seats.isEmpty  {
+            destination.isEmpty || startTime.isEmpty || seats.isEmpty || comments.isEmpty  {
             return nil
         }
         // The variables must not be empty
         guard !driver.isEmpty || !car.isEmpty || !beginLocation.isEmpty ||
-            !destination.isEmpty || !startTime.isEmpty || !seats.isEmpty else {
+            !destination.isEmpty || !startTime.isEmpty || !seats.isEmpty || !comments.isEmpty else {
                 return nil
         }
         
@@ -37,6 +38,7 @@ class Ride: NSObject {
         self.destination = destination
         self.startTime = startTime
         self.seats = seats
+        self.comments = comments
     }
     
     
