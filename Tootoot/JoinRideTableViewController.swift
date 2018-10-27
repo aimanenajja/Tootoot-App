@@ -40,7 +40,7 @@ class JoinRideTableViewController: UITableViewController {
                 for rides in snapshot.children.allObjects as! [DataSnapshot] {
                     //getting values
                     let rideObject = rides.value as? [String: AnyObject]
-                    //let rideDriver = rideObject?["driver"]
+                    let rideDriver = rideObject?["driver"]
                     let rideCar = rideObject?["car"]
                     let rideBeginLocation = rideObject?["address"]
                     let rideDestination = rideObject?["endLocation"]
@@ -48,7 +48,7 @@ class JoinRideTableViewController: UITableViewController {
                     //let rideSeats = rideObject?["seats"]
                     let rideComments = rideObject?["comments"]
                     
-                    let ride = Ride(driver: "Emre", car: rideCar as! String, beginLocation: rideBeginLocation as! String, destination: rideDestination as! String, startTime: rideStartTime as! String, seats: "4", comments: rideComments as! String)
+                    let ride = Ride(driver: rideDriver as! String, car: rideCar as! String, beginLocation: rideBeginLocation as! String, destination: rideDestination as! String, startTime: rideStartTime as! String, seats: "4", comments: rideComments as! String)
                     
                     //appending it to list
                     self.rides.append(ride!)
