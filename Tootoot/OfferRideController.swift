@@ -29,7 +29,6 @@ class OfferRideController: UIViewController, CLLocationManagerDelegate {
         super.viewDidLoad()
         ref = Database.database().reference()
         
-        
         if CLLocationManager.locationServicesEnabled() {
             
             locationManager.delegate = self
@@ -41,13 +40,12 @@ class OfferRideController: UIViewController, CLLocationManagerDelegate {
         
         location = CLLocation(latitude: locLat, longitude: locLong)
         
-        let user = Auth.auth().currentUser
-        if let user = user {
+        if let user = Auth.auth().currentUser {
             let uid = user.uid
             ref.child("users").child(uid).observeSingleEvent(of: .value, with: { (snapshot) in
                 // Get user value
                 let value = snapshot.value as? NSDictionary
-                print(value)
+                print(value!)
                 self.username = value?["username"] as? String ?? ""
                 
             }) { (error) in
@@ -89,27 +87,20 @@ class OfferRideController: UIViewController, CLLocationManagerDelegate {
         startTime = dateFormatter.string(from: sender.date)
     }
     
-    @IBAction func endTimeChanged(_ sender: UIDatePicker) {
-        let dateFormatter = DateFormatter()
-        dateFormatter.dateFormat = "h:mm a"
-        endTime = dateFormatter.string(from: sender.date)
-    }
     @IBAction func placeRide(_ sender: UIButton) {
-
-      
         
-            let user = Auth.auth().currentUser
-            if let user = user {
-                let uid = user.uid
-                print(username)
-                let endLocation = self.endLocation.text
-                let car = self.carTextField.text
-                let comments = self.comments.text
-                
-                self.ref.child("rides").child(uid).setValue(["driver":username,  "endLocation":endLocation!, "endTime": endTime,"startTime": startTime,"car":car!,"comments":comments!, "longitude": locLong, "latitude": locLat, "address": address])
-                
-            }
+        let user = Auth.auth().currentUser
+        if let user = user {
+            let uid = user.uid
+            print(username)
+            let endLocation = self.endLocation.text
+            let car = self.carTextField.text
+            let comments = self.comments.text
+            
+            self.ref.child("rides").child(uid).setValue(["driver":username,  "endLocation":endLocation!,"startTime": startTime,"car":car!,"comments":comments!, "longitude": locLong, "latitude": locLat, "address": address])
         }
+        
+    }
     
     private func processResponse(withPlacemarks placemarks: [CLPlacemark]?, error: Error?) {
         // Update View

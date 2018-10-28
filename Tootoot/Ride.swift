@@ -17,6 +17,7 @@ class Ride: NSObject {
     var startTime: String
     var seats: String
     var comments: String
+    var passengers = [Passenger]()
     
     init?(driver: String, car: String, beginLocation: String,
           destination: String, startTime: String,  seats: String, comments: String) {
@@ -40,7 +41,5 @@ class Ride: NSObject {
         self.seats = seats
         self.comments = comments
     }
-    
-    
     
 }

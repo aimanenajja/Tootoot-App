@@ -8,10 +8,10 @@
 
 /* Begin PBXBuildFile section */
 		732581CA216981FC0022CB27 /* RegisterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 732581C9216981FC0022CB27 /* RegisterViewController.swift */; };
-		738F1224217679D800123D3D /* AddCarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 738F1223217679D800123D3D /* AddCarController.swift */; };
 		738F1229217E5AAC00123D3D /* CurrentRideController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 738F1228217E5AAC00123D3D /* CurrentRideController.swift */; };
 		738F12352184FF2500123D3D /* RideDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 738F12342184FF2400123D3D /* RideDetailViewController.swift */; };
 		73FF27E2216861950072F220 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 73FF27E1216861950072F220 /* GoogleService-Info.plist */; };
+		8264BB452186545B00C0705D /* Passenger.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8264BB442186545B00C0705D /* Passenger.swift */; };
 		8285212C2163A2D400AF301A /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8285212B2163A2D400AF301A /* AppDelegate.swift */; };
 		8285212E2163A2D400AF301A /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8285212D2163A2D400AF301A /* HomeViewController.swift */; };
 		828521312163A2D400AF301A /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8285212F2163A2D400AF301A /* Main.storyboard */; };
@@ -29,10 +29,10 @@
 		3013EB88243C1861F04F2CD1 /* Pods_Tootoot.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Tootoot.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		425A106CDEF6FBFA56D6D62B /* Pods-Tootoot.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Tootoot.release.xcconfig"; path = "Pods/Target Support Files/Pods-Tootoot/Pods-Tootoot.release.xcconfig"; sourceTree = "<group>"; };
 		732581C9216981FC0022CB27 /* RegisterViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterViewController.swift; sourceTree = "<group>"; };
-		738F1223217679D800123D3D /* AddCarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddCarController.swift; sourceTree = "<group>"; };
 		738F1228217E5AAC00123D3D /* CurrentRideController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrentRideController.swift; sourceTree = "<group>"; };
 		738F12342184FF2400123D3D /* RideDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RideDetailViewController.swift; sourceTree = "<group>"; };
 		73FF27E1216861950072F220 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		8264BB442186545B00C0705D /* Passenger.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Passenger.swift; sourceTree = "<group>"; };
 		828521282163A2D400AF301A /* Tootoot.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Tootoot.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		8285212B2163A2D400AF301A /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		8285212D2163A2D400AF301A /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
@@ -79,19 +79,19 @@
 		8285212A2163A2D400AF301A /* Tootoot */ = {
 			isa = PBXGroup;
 			children = (
-				82ED3CA6217F53040042FFBC /* OfferRideController.swift */,
-				738F1223217679D800123D3D /* AddCarController.swift */,
 				8285212B2163A2D400AF301A /* AppDelegate.swift */,
-				8285212D2163A2D400AF301A /* HomeViewController.swift */,
 				732581C9216981FC0022CB27 /* RegisterViewController.swift */,
-				738F1228217E5AAC00123D3D /* CurrentRideController.swift */,
+				8285212D2163A2D400AF301A /* HomeViewController.swift */,
 				82ED3CA8217F53E10042FFBC /* JoinRideTableViewController.swift */,
-				738F12342184FF2400123D3D /* RideDetailViewController.swift */,
 				82ED3CA0217F3D7D0042FFBC /* RideTableViewCell.swift */,
+				738F12342184FF2400123D3D /* RideDetailViewController.swift */,
+				82ED3CA6217F53040042FFBC /* OfferRideController.swift */,
+				738F1228217E5AAC00123D3D /* CurrentRideController.swift */,
 				82ED3CAA217F555D0042FFBC /* Ride.swift */,
+				8264BB442186545B00C0705D /* Passenger.swift */,
 				8285212F2163A2D400AF301A /* Main.storyboard */,
-				828521322163A2D500AF301A /* Assets.xcassets */,
 				828521342163A2D500AF301A /* LaunchScreen.storyboard */,
+				828521322163A2D500AF301A /* Assets.xcassets */,
 				828521372163A2D500AF301A /* Info.plist */,
 				73FF27E1216861950072F220 /* GoogleService-Info.plist */,
 			);
@@ -245,9 +245,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				738F1224217679D800123D3D /* AddCarController.swift in Sources */,
 				732581CA216981FC0022CB27 /* RegisterViewController.swift in Sources */,
 				82ED3CA9217F53E10042FFBC /* JoinRideTableViewController.swift in Sources */,
+				8264BB452186545B00C0705D /* Passenger.swift in Sources */,
 				738F12352184FF2500123D3D /* RideDetailViewController.swift in Sources */,
 				738F1229217E5AAC00123D3D /* CurrentRideController.swift in Sources */,
 				82ED3CA1217F3D7D0042FFBC /* RideTableViewCell.swift in Sources */,
