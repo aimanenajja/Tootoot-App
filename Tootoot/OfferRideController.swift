@@ -53,10 +53,11 @@ class OfferRideController: UIViewController, CLLocationManagerDelegate {
             }) { (error) in
                 print(error.localizedDescription)
             }
+        }
+        self.title = "Offer Ride"
 
     }
     
-    }
     func locationManager(_ manager: CLLocationManager, didChangeAuthorization status: CLAuthorizationStatus) {
         if status == .authorizedWhenInUse {
             locationManager.requestLocation()
@@ -84,13 +85,13 @@ class OfferRideController: UIViewController, CLLocationManagerDelegate {
     
     @IBAction func startTimeChanged(_ sender: UIDatePicker) {
         let dateFormatter = DateFormatter()
-        dateFormatter.dateFormat = "MMM d, h:mm a"
+        dateFormatter.dateFormat = "h:mm a"
         startTime = dateFormatter.string(from: sender.date)
     }
     
     @IBAction func endTimeChanged(_ sender: UIDatePicker) {
         let dateFormatter = DateFormatter()
-        dateFormatter.dateFormat = "MMM d, h:mm a"
+        dateFormatter.dateFormat = "h:mm a"
         endTime = dateFormatter.string(from: sender.date)
     }
     @IBAction func placeRide(_ sender: UIButton) {
@@ -105,7 +106,7 @@ class OfferRideController: UIViewController, CLLocationManagerDelegate {
                 let car = self.carTextField.text
                 let comments = self.comments.text
                 
-                self.ref.child("rides").child(uid).setValue(["driver":username,  "endLocation":endLocation, "endTime": endTime,"startTime": startTime,"car":car,"comments":comments, "longitude": locLong, "latitude": locLat, "address": address])
+                self.ref.child("rides").child(uid).setValue(["driver":username,  "endLocation":endLocation!, "endTime": endTime,"startTime": startTime,"car":car!,"comments":comments!, "longitude": locLong, "latitude": locLat, "address": address])
                 
             }
         }
@@ -125,19 +126,6 @@ class OfferRideController: UIViewController, CLLocationManagerDelegate {
         }
         
     }
-        /*
-         // MARK: - Navigation
-         
-         // In a storyboard-based application, you will often want to do a little preparation before navigation
-         override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-         // Get the new view controller using segue.destination.
-         // Pass the selected object to the new view controller.
-         }
-         */
-        
-        
-        
-        
     
 }
 

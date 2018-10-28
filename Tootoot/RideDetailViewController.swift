@@ -16,8 +16,8 @@ class RideDetailViewController: UIViewController, UINavigationControllerDelegate
     @IBOutlet weak var beginLocationLabel: UILabel!
     @IBOutlet weak var endLocationLabel: UILabel!
     @IBOutlet weak var startTimeLabel: UILabel!
-    @IBOutlet weak var remainingSeatsLabel: UILabel!    
-    @IBOutlet weak var commentsLabel: UILabel!
+    @IBOutlet weak var remainingSeatsLabel: UILabel!
+    @IBOutlet weak var commentsTextView: UITextView!
     
     /*
      This value is either passed by `MealTableViewController` in `prepare(for:sender:)`
@@ -36,7 +36,7 @@ class RideDetailViewController: UIViewController, UINavigationControllerDelegate
             endLocationLabel.text = ride.destination
             startTimeLabel.text = ride.startTime
             remainingSeatsLabel.text = ride.seats
-            commentsLabel.text = ride.comments
+            commentsTextView.text = ride.comments
         }
         
         self.title = "Ride Details"

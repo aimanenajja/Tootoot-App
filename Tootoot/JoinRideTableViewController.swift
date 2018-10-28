@@ -20,8 +20,6 @@ class JoinRideTableViewController: UITableViewController {
     //MARK: Database References
     var refRides: DatabaseReference!
     
-    
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         
