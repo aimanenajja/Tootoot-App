@@ -17,6 +17,7 @@
 		828521312163A2D400AF301A /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8285212F2163A2D400AF301A /* Main.storyboard */; };
 		828521332163A2D500AF301A /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 828521322163A2D500AF301A /* Assets.xcassets */; };
 		828521362163A2D500AF301A /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 828521342163A2D500AF301A /* LaunchScreen.storyboard */; };
+		829205BA218690F400147018 /* PassengerTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 829205B9218690F400147018 /* PassengerTableViewCell.swift */; };
 		82ED3CA1217F3D7D0042FFBC /* RideTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82ED3CA0217F3D7D0042FFBC /* RideTableViewCell.swift */; };
 		82ED3CA7217F53050042FFBC /* OfferRideController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82ED3CA6217F53040042FFBC /* OfferRideController.swift */; };
 		82ED3CA9217F53E10042FFBC /* JoinRideTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82ED3CA8217F53E10042FFBC /* JoinRideTableViewController.swift */; };
@@ -40,6 +41,7 @@
 		828521322163A2D500AF301A /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		828521352163A2D500AF301A /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		828521372163A2D500AF301A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		829205B9218690F400147018 /* PassengerTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PassengerTableViewCell.swift; sourceTree = "<group>"; };
 		82ED3CA0217F3D7D0042FFBC /* RideTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RideTableViewCell.swift; sourceTree = "<group>"; };
 		82ED3CA6217F53040042FFBC /* OfferRideController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OfferRideController.swift; sourceTree = "<group>"; };
 		82ED3CA8217F53E10042FFBC /* JoinRideTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JoinRideTableViewController.swift; sourceTree = "<group>"; };
@@ -87,6 +89,7 @@
 				738F12342184FF2400123D3D /* RideDetailViewController.swift */,
 				82ED3CA6217F53040042FFBC /* OfferRideController.swift */,
 				738F1228217E5AAC00123D3D /* CurrentRideController.swift */,
+				829205B9218690F400147018 /* PassengerTableViewCell.swift */,
 				82ED3CAA217F555D0042FFBC /* Ride.swift */,
 				8264BB442186545B00C0705D /* Passenger.swift */,
 				8285212F2163A2D400AF301A /* Main.storyboard */,
@@ -252,6 +255,7 @@
 				738F1229217E5AAC00123D3D /* CurrentRideController.swift in Sources */,
 				82ED3CA1217F3D7D0042FFBC /* RideTableViewCell.swift in Sources */,
 				82ED3CAB217F555D0042FFBC /* Ride.swift in Sources */,
+				829205BA218690F400147018 /* PassengerTableViewCell.swift in Sources */,
 				8285212E2163A2D400AF301A /* HomeViewController.swift in Sources */,
 				82ED3CA7217F53050042FFBC /* OfferRideController.swift in Sources */,
 				8285212C2163A2D400AF301A /* AppDelegate.swift in Sources */,

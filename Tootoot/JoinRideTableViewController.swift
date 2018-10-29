@@ -100,7 +100,7 @@ class JoinRideTableViewController: UITableViewController {
         }
         
         guard let selectedRideCell = sender as? RideTableViewCell else {
-            fatalError("Unexpected sender: \(sender)")
+            fatalError("Unexpected sender: \(String(describing: sender))")
         }
         
         guard let indexPath = tableView.indexPath(for: selectedRideCell) else {
