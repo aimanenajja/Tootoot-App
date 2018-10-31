@@ -33,6 +33,13 @@ class RegisterViewController: UIViewController {
     var isSignIn:Bool = true
     override func viewDidLoad() {
         super.viewDidLoad()
+        let firebaseAuth = Auth.auth()
+        do {
+            try firebaseAuth.signOut()
+        } catch let signOutError as NSError {
+            print ("Error signing out: %@", signOutError)
+        }
+        
         ref = Database.database().reference()
         let email = defaults.string(forKey: "Email")
         if !(email == ""){

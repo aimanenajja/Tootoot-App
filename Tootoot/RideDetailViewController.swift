@@ -32,6 +32,7 @@ class RideDetailViewController: UIViewController, UINavigationControllerDelegate
     var location = CLLocation(latitude: 0, longitude: 0)
     var address: String = ""
     lazy var geocoder = CLGeocoder()
+    var uid : String = ""
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -59,7 +60,7 @@ class RideDetailViewController: UIViewController, UINavigationControllerDelegate
         
         //Get current username
         if let user = Auth.auth().currentUser {
-            let uid = user.uid
+            uid = user.uid
             ref.child("users").child(uid).observeSingleEvent(of: .value, with: { (snapshot) in
                 // Get user value
                 let value = snapshot.value as? NSDictionary
@@ -95,7 +96,7 @@ class RideDetailViewController: UIViewController, UINavigationControllerDelegate
                             let name = self.username
                             let location = self.address
                             let destination = self.yourDestinationTextField.text
-                            self.ref.child("rides").child(self.driverId).child("passengers").setValue(["name": name, "location": location, "destination": destination!])
+                            self.ref.child("rides").child(self.driverId).child("passengers").child(self.uid).setValue(["name": name, "location": location, "destination": destination!])
                             break
                         }
                     }
