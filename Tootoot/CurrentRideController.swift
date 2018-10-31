@@ -41,7 +41,7 @@ class CurrentRideController: UIViewController, UITableViewDelegate, UITableViewD
         }
         // om de tabel van passagiers te vullen
         
-        refPassagiers = Database.database().reference().child("rides").child(userID!);
+        refPassagiers = Database.database().reference().child("rides").child(userID!).child("passengers");
         
         refPassagiers.observe(DataEventType.value, with: { (snapshot) in
             print(snapshot)
