@@ -104,4 +104,12 @@ class CurrentRideController: UIViewController, UITableViewDelegate, UITableViewD
         return cell
     }
     
+    @IBAction func finishRide(_ sender: UIButton) {
+        let userID = Auth.auth().currentUser?.uid
+        ref = Database.database().reference()
+        ref.child("rides").child(userID!).removeValue()
+        
+    }
+    
+    
 }
