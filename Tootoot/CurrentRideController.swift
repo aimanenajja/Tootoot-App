@@ -14,10 +14,10 @@ class CurrentRideController: UIViewController, UITableViewDelegate, UITableViewD
     @IBOutlet weak var destination: UILabel!
     @IBOutlet weak var passengersTableView: UITableView!
     
-    
     var ref: DatabaseReference!
     var refPassagiers: DatabaseReference!
     var passengers = [Passenger]()
+    var passengerId: String = ""
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -102,6 +102,49 @@ class CurrentRideController: UIViewController, UITableViewDelegate, UITableViewD
         cell.passengerDestinationLabel.text = passenger.destination
         
         return cell
+    }
+    
+    // Override to support conditional editing of the table view.
+    func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
+        // Return false if you do not want the specified item to be editable.
+        return true
+    }
+    
+    // Override to support editing the table view.
+    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
+        if editingStyle == .delete {
+            
+            // Fetches the appropriate meal for the data source layout.
+            let passenger = passengers[indexPath.row]
+            print(passenger.name)
+            
+            passengers.remove(at: indexPath.row)
+            tableView.deleteRows(at: [indexPath], with: .fade)
+            
+            refPassagiers.observeSingleEvent(of: .value, with: { (snapshot) in
+                
+                if let snapshot = snapshot.children.allObjects as? [DataSnapshot] {
+                    print("SNAPSHOT: \(snapshot)")
+                    
+                    for snap in snapshot {
+                        if let userDict = snap.value as? Dictionary<String, AnyObject> {
+                            
+                            if userDict["name"] as? String == passenger.name {
+                                self.passengerId = snap.key
+                                print(self.passengerId)
+                                
+                                self.refPassagiers.child(self.passengerId).removeValue()
+                                break
+                            }
+                        }
+                    }
+                    self.passengersTableView.reloadData()
+                }
+            })
+            
+        } else if editingStyle == .insert {
+            // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
+        }
     }
     
     @IBAction func finishRide(_ sender: UIButton) {

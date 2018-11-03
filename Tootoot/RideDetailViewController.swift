@@ -80,7 +80,7 @@ class RideDetailViewController: UIViewController, UINavigationControllerDelegate
     @IBAction func SendJoinRequestButton(_ sender: UIButton) {
         
         // Voeg Passenger toe aan lijst van Ride
-        ref.child("rides").observe(DataEventType.value, with: { (snapshot) in
+        ref.child("rides").observeSingleEvent(of: .value, with: { (snapshot) in
             
             if let snapshot = snapshot.children.allObjects as? [DataSnapshot] {
                 print("SNAPSHOT: \(snapshot)")
