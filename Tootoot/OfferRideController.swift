@@ -24,10 +24,13 @@ class OfferRideController: UIViewController, CLLocationManagerDelegate {
     var address: String = ""
     var username: String = ""
     lazy var geocoder = CLGeocoder()
+    @IBOutlet weak var scrollView: UIScrollView!
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
         ref = Database.database().reference()
+        scrollView.keyboardDismissMode = .onDrag
         
         if CLLocationManager.locationServicesEnabled() {
             
@@ -129,6 +132,10 @@ extension CLPlacemark {
     
     var compactAddress: String? {
         var result: String = ""
+        
+        if let street = thoroughfare {
+            result += ", \(street)"
+        }
         if let city = locality {
             result += "\(city)"
         }
