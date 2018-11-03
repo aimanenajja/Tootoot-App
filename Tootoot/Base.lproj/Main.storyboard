@@ -1145,8 +1145,11 @@
                                                         <nil key="textColor"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
-                                                    <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" horizontalCompressionResistancePriority="751" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="3Pr-VY-Rwa">
+                                                    <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" horizontalCompressionResistancePriority="751" contentHorizontalAlignment="center" contentVerticalAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="3Pr-VY-Rwa">
                                                         <rect key="frame" x="149" y="0.0" width="51" height="31"/>
+                                                        <connections>
+                                                            <action selector="rememberEmail:" destination="KPx-ko-nUh" eventType="valueChanged" id="7wI-Tv-lGU"/>
+                                                        </connections>
                                                     </switch>
                                                 </subviews>
                                             </stackView>

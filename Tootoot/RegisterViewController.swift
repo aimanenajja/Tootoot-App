@@ -39,11 +39,24 @@ class RegisterViewController: UIViewController {
         } catch let signOutError as NSError {
             print ("Error signing out: %@", signOutError)
         }
-        
+        let defaults = UserDefaults.standard
         ref = Database.database().reference()
         let email = defaults.string(forKey: "Email")
+        if let remember = UserDefaults.standard.value(forKey: "Remember")
+        {
+            if remember as! Bool {
+                self.remember.isOn = true
+            } else {
+               self.defaults.set("", forKey: "Email")
+            }
+            
+        } else {
+            self.defaults.set(false, forKey: "Remember")
+            self.defaults.set("", forKey: "Email")
+        }
         if !(email == ""){
             emailTextField.text = email}
+        
         self.navigationController?.setNavigationBarHidden(false, animated: false)
         self.title = "Tootoot"
 
@@ -72,7 +85,7 @@ class RegisterViewController: UIViewController {
                 if self.remember.isOn{
                     self.defaults.set(email, forKey: "Email")
                 } else {
-                    self.defaults.set(email, forKey: "")
+                    self.defaults.set(" ", forKey: "Email")
                 }
                 
                 if let user = authDataResult {
@@ -96,8 +109,11 @@ class RegisterViewController: UIViewController {
                    let userUid = user.user.uid
                    let email = user.user.email
                     
-                    self.defaults.set(email, forKey: "Email")
-                    
+                    if self.remember.isOn{
+                        self.defaults.set(email, forKey: "Email")
+                    } else {
+                        self.defaults.set(" ", forKey: "Email")
+                    }
                     let name = self.usernameTextField.text
                     self.ref.child("users").child(userUid).setValue(["email": email, "username": name ])
                     
@@ -119,7 +135,14 @@ class RegisterViewController: UIViewController {
         emailTextField.resignFirstResponder()
         passwordTextField.resignFirstResponder()
 }
+    @IBAction func rememberEmail(_ sender: UISwitch) {
+        if remember.isOn{
+            self.defaults.set(true, forKey: "Remember")
+        } else {
+            self.defaults.set(false, forKey: "Remember")
+        }
     }
+}
     /*
     // MARK: - Navigation
 
