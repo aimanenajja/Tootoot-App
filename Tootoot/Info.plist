@@ -6,6 +6,8 @@
 	<true/>
 	<key>CFBundleDevelopmentRegion</key>
 	<string>$(DEVELOPMENT_LANGUAGE)</string>
+	<key>NSPhotoLibraryUsageDescription</key>
+	<string>Fix uw foto&apos;s bro!</string>
 	<key>CFBundleExecutable</key>
 	<string>$(EXECUTABLE_NAME)</string>
 	<key>CFBundleIdentifier</key>
@@ -45,6 +47,8 @@
 	<string>This app is all about determining your location.</string>
 	<key>NSLocationAlwaysUsageDescription</key>
 	<string></string>
+	<key>NSCameraUsageDescription</key>
+	<string>Laat me u kop zien bro</string>
 	<key>NSLocationAlwaysAndWhenInUseUsageDescription</key>
 	<string>Give this app permission to your location.</string>
 </dict>
