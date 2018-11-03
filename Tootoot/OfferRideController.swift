@@ -117,6 +117,11 @@ class OfferRideController: UIViewController, CLLocationManagerDelegate {
         }
         
     }
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+        carTextField.resignFirstResponder()
+        endLocation.resignFirstResponder()
+        comments.resignFirstResponder()
+    }
     
 }
 

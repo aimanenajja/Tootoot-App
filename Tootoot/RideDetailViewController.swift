@@ -146,4 +146,8 @@ class RideDetailViewController: UIViewController, UINavigationControllerDelegate
         
     }
     
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+        yourDestinationTextField.resignFirstResponder()
+    }
+    
 }
