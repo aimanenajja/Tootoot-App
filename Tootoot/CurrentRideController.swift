@@ -21,7 +21,7 @@ class CurrentRideController: UIViewController, UITableViewDelegate, UITableViewD
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        self.navigationItem.setHidesBackButton(true, animated:true);
         passengersTableView.delegate = self
         passengersTableView.dataSource = self
         
