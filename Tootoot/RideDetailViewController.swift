@@ -33,6 +33,8 @@ class RideDetailViewController: UIViewController, UINavigationControllerDelegate
     var address: String = ""
     lazy var geocoder = CLGeocoder()
     var uid : String = ""
+    var distance : Double = 0
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -55,6 +57,35 @@ class RideDetailViewController: UIViewController, UINavigationControllerDelegate
             locationManager.desiredAccuracy = kCLLocationAccuracyNearestTenMeters
             locationManager.requestLocation()
             print("locations = \(locLong) \(locLat)")
+            let coordinatePassenger = CLLocation(latitude: locLat, longitude: locLong)
+            ref.child("rides").observeSingleEvent(of: .value, with: { (snapshot) in
+                
+                if let snapshot = snapshot.children.allObjects as? [DataSnapshot] {
+                    print("SNAPSHOT: \(snapshot)")
+                    
+                    for snap in snapshot {
+                        if let userDict = snap.value as? Dictionary<String, AnyObject> {
+                            
+                            if userDict["driver"] as? String == self.driverLabel.text {
+                                print(snap.childSnapshot(forPath: "latitude").value)
+                                print("teeeeest")
+                                let driverLat = snap.childSnapshot(forPath: "latitude").value
+                                
+                                let driverLong = snap.childSnapshot(forPath: "longitude").value
+                                
+                                let coordinateDriver = CLLocation(latitude: driverLat as! CLLocationDegrees, longitude: driverLong as! CLLocationDegrees)
+                                self.distance = coordinatePassenger.distance(from: coordinateDriver)
+                                
+                            }
+                        }
+                    }
+                    
+                    
+                }
+                
+                
+            })
+            print(distance)
             
         }
         
