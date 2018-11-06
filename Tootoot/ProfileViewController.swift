@@ -7,18 +7,37 @@
 //
 
 import UIKit
+import Firebase
 
 class ProfileViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
     @IBOutlet weak var imageView: UIImageView!
+    @IBOutlet weak var CurrentUserLabel: UILabel!
+    
+    var ref: DatabaseReference!
     
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        ref = Database.database().reference()
+        let userID = Auth.auth().currentUser?.uid
+        ref.child("users").child(userID!).observeSingleEvent(of: .value, with: { (snapshot) in
+            // Get user value
+            let value = snapshot.value as? NSDictionary
+            let username = value?["username"] as? String ?? ""
+            
+            self.CurrentUserLabel.text = username
+        }) { (error) in
+            print(error.localizedDescription)
+        }
         // Do any additional setup after loading the view.
     }
     
-    @IBAction func chooseImage(_ sender: UIButton) {
+    func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
+        picker.dismiss(animated: true, completion: nil)
         
+    }
+    
+    @IBAction func selectPhoto(_ sender: UITapGestureRecognizer) {
         let imagePickerController = UIImagePickerController()
         imagePickerController.delegate = self
         
@@ -27,7 +46,7 @@ class ProfileViewController: UIViewController, UIImagePickerControllerDelegate, 
             if UIImagePickerController.isSourceTypeAvailable(.camera){
                 imagePickerController.sourceType = .camera
                 self.present(imagePickerController, animated: true, completion: nil)
-            }            
+            }
         }))
         actionSheet.addAction(UIAlertAction(title: "Photo Library", style: .default, handler: { (action: UIAlertAction) in
             imagePickerController.sourceType = .photoLibrary
@@ -43,13 +62,6 @@ class ProfileViewController: UIViewController, UIImagePickerControllerDelegate, 
         imageView.image = image
         
         picker.dismiss(animated: true, completion: nil)
-        
     }
     
-    func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
-        picker.dismiss(animated: true, completion: nil)
-        
-    }
-    
-
 }
