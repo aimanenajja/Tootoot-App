@@ -65,12 +65,15 @@ class RideDetailViewController: UIViewController, UINavigationControllerDelegate
                 // Get user value
                 let value = snapshot.value as? NSDictionary
                 print(value!)
+                print("Passengers/" + self.uid)
                 self.username = value?["username"] as? String ?? ""
                 
             }) { (error) in
                 print(error.localizedDescription)
             }
         }
+        //check for deletion
+        
         
         self.title = "Ride Details"
 
@@ -91,17 +94,26 @@ class RideDetailViewController: UIViewController, UINavigationControllerDelegate
                         if userDict["driver"] as? String == self.driverLabel.text {
                             self.driverId = snap.key
                             print(self.driverId)
-                            //Add this key to userID array
+                                                      //Add this key to userID array
                             
                             let name = self.username
                             let location = self.address
                             let destination = self.yourDestinationTextField.text
                             self.ref.child("rides").child(self.driverId).child("passengers").child(self.uid).setValue(["name": name, "location": location, "destination": destination!])
-                            break
+                            
+                            
+                            self.notifyUser(_driverID: self.driverId)
+                                break
+                            
+                            
                         }
                     }
                 }
+                
+                
             }
+            
+            
         })
         
     }
@@ -150,4 +162,27 @@ class RideDetailViewController: UIViewController, UINavigationControllerDelegate
         yourDestinationTextField.resignFirstResponder()
     }
     
+    func notifyUser(_driverID : String){
+        
+        ref.child("rides").child(_driverID).observe(DataEventType.value) { (snapshot) in
+            print(snapshot)
+            if snapshot.hasChild("passengers")
+            {
+                print("test")
+                if !snapshot.hasChild("passengers/" + self.uid)
+                {
+                    print("Test2")
+                    let alert = UIAlertController(title: "Denied!", message: "You got denied by the driver", preferredStyle: .alert)
+                    alert.addAction(UIAlertAction(title: "Ok", style: .default, handler: nil))
+                    self.present(alert, animated: true)
+                }
+            } else
+            {
+                print("Er zijn geen passengers")
+                let alert = UIAlertController(title: "Denied!", message: "You got denied by the driver", preferredStyle: .alert)
+                alert.addAction(UIAlertAction(title: "Ok", style: .default, handler: nil))
+                self.present(alert, animated: true)
+            }
+        }
+    }
 }
