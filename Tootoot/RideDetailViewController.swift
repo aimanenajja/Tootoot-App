@@ -206,14 +206,18 @@ class RideDetailViewController: UIViewController, UINavigationControllerDelegate
                 {
                     print("Test2")
                     let alert = UIAlertController(title: "Denied!", message: "You got denied by the driver", preferredStyle: .alert)
-                    alert.addAction(UIAlertAction(title: "Ok", style: .default, handler: nil))
+                    alert.addAction(UIAlertAction(title: "Ok", style: .default, handler: { action in
+                        self.performSegue(withIdentifier: "confirmed", sender: nil)
+                    }))
                     self.present(alert, animated: true)
                 }
             } else
             {
                 print("Er zijn geen passengers")
                 let alert = UIAlertController(title: "Denied!", message: "You got denied by the driver", preferredStyle: .alert)
-                alert.addAction(UIAlertAction(title: "Ok", style: .default, handler: nil))
+                alert.addAction(UIAlertAction(title: "Ok", style: .default, handler: { action in
+                    self.performSegue(withIdentifier: "confirmed", sender: nil)
+                }))
                 self.present(alert, animated: true)
             }
         }
