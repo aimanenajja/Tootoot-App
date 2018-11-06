@@ -29,6 +29,7 @@ class ProfileViewController: UIViewController, UIImagePickerControllerDelegate, 
         }) { (error) in
             print(error.localizedDescription)
         }
+        
         // Do any additional setup after loading the view.
     }
     
