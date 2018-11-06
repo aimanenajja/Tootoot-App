@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14460.31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="KPx-ko-nUh">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14313.18" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="KPx-ko-nUh">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14460.20"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14283.14"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="Stack View standard spacing" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -563,6 +563,7 @@
                         <outlet property="remainingSeatsLabel" destination="5Jn-FO-HZu" id="Wo6-kH-xeY"/>
                         <outlet property="startTimeLabel" destination="cXa-wT-2la" id="7wA-p6-xt0"/>
                         <outlet property="yourDestinationTextField" destination="q3v-mY-OI8" id="Xjb-Ua-ghM"/>
+                        <segue destination="BYZ-38-t0r" kind="show" identifier="confirmed" id="Qsa-yR-oMI"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="kgK-F1-y3h" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -1172,9 +1173,10 @@
     </scenes>
     <resources>
         <image name="Launchscreen" width="500" height="889"/>
-        <image name="defaultPhoto" width="1080" height="1080"/>
+        <image name="defaultPhoto" width="540" height="540"/>
     </resources>
     <inferredMetricsTieBreakers>
         <segue reference="WkH-6h-xEE"/>
+        <segue reference="Qsa-yR-oMI"/>
     </inferredMetricsTieBreakers>
 </document>

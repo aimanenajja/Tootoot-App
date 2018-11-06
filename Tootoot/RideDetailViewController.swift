@@ -222,7 +222,9 @@ class RideDetailViewController: UIViewController, UINavigationControllerDelegate
             print(snapshot)
             if (snapshot.value as? String == "true") {
                 let alert = UIAlertController(title: "Accepted!", message: "You got accepted by the driver", preferredStyle: .alert)
-                alert.addAction(UIAlertAction(title: "Ok", style: .default, handler: nil))
+                alert.addAction(UIAlertAction(title: "Ok", style: .default, handler: { action in
+                    self.performSegue(withIdentifier: "confirmed", sender: nil)
+                    }))
                 self.present(alert, animated: true)
             }
         }
