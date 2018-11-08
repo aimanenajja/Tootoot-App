@@ -199,6 +199,8 @@ class RideDetailViewController: UIViewController, UINavigationControllerDelegate
         
         ref.child("rides").child(_driverID).observe(DataEventType.value) { (snapshot) in
             print(snapshot)
+            if snapshot.exists()
+            {
             if snapshot.hasChild("passengers")
             {
                 print("test")
@@ -220,6 +222,7 @@ class RideDetailViewController: UIViewController, UINavigationControllerDelegate
                 }))
                 self.present(alert, animated: true)
             }
+        }
         }
         
         ref.child("confirmed").child(_driverID).observe(DataEventType.value){ (snapshot) in
