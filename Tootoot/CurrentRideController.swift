@@ -18,6 +18,7 @@ class CurrentRideController: UIViewController, UITableViewDelegate, UITableViewD
     var refPassagiers: DatabaseReference!
     var passengers = [Passenger]()
     var passengerId: String = ""
+    var userID: String = ""
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -28,8 +29,9 @@ class CurrentRideController: UIViewController, UITableViewDelegate, UITableViewD
         ref = Database.database().reference()
         
         // om de destination mee te geven, kan eenvoudiger normaal
-        let userID = Auth.auth().currentUser?.uid
-        ref.child("rides").child(userID!).observeSingleEvent(of: .value, with: { (snapshot) in
+        self.userID = (Auth.auth().currentUser?.uid)!
+        ref.child("confirmed").child(userID).setValue("false")
+        ref.child("rides").child(userID).observeSingleEvent(of: .value, with: { (snapshot) in
             // Get user value
             let value = snapshot.value as? NSDictionary
             print(value!)
@@ -41,7 +43,7 @@ class CurrentRideController: UIViewController, UITableViewDelegate, UITableViewD
         }
         // om de tabel van passagiers te vullen
         
-        refPassagiers = Database.database().reference().child("rides").child(userID!).child("passengers");
+        refPassagiers = Database.database().reference().child("rides").child(userID).child("passengers");
         
         refPassagiers.observe(DataEventType.value, with: { (snapshot) in
             print(snapshot)
@@ -145,6 +147,12 @@ class CurrentRideController: UIViewController, UITableViewDelegate, UITableViewD
         } else if editingStyle == .insert {
             // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
         }
+    }
+    
+    @IBAction func confirmPassengers(_ sender: UIButton) {
+        
+        ref = Database.database().reference()
+        ref.child("confirmed").child(self.userID).setValue("true")
     }
     
     @IBAction func finishRide(_ sender: UIButton) {

@@ -34,6 +34,8 @@ class RideDetailViewController: UIViewController, UINavigationControllerDelegate
     lazy var geocoder = CLGeocoder()
     var uid : String = ""
     var distance : Double = 0
+    var confirmed : Bool = false
+    
     
     
     override func viewDidLoad() {
@@ -211,6 +213,15 @@ class RideDetailViewController: UIViewController, UINavigationControllerDelegate
             {
                 print("Er zijn geen passengers")
                 let alert = UIAlertController(title: "Denied!", message: "You got denied by the driver", preferredStyle: .alert)
+                alert.addAction(UIAlertAction(title: "Ok", style: .default, handler: nil))
+                self.present(alert, animated: true)
+            }
+        }
+        
+        ref.child("confirmed").child(_driverID).observe(DataEventType.value){ (snapshot) in
+            print(snapshot)
+            if (snapshot.value as? String == "true") {
+                let alert = UIAlertController(title: "Accepted!", message: "You got accepted by the driver", preferredStyle: .alert)
                 alert.addAction(UIAlertAction(title: "Ok", style: .default, handler: nil))
                 self.present(alert, animated: true)
             }
