@@ -13,6 +13,9 @@ class CurrentRideController: UIViewController, UITableViewDelegate, UITableViewD
 
     @IBOutlet weak var destination: UILabel!
     @IBOutlet weak var passengersTableView: UITableView!
+    @IBOutlet weak var confirmButton: UIButton!
+    @IBOutlet weak var finishButton: UIButton!
+    
     
     var ref: DatabaseReference!
     var refPassagiers: DatabaseReference!
@@ -22,6 +25,7 @@ class CurrentRideController: UIViewController, UITableViewDelegate, UITableViewD
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.finishButton.isHidden = true
         self.navigationItem.setHidesBackButton(true, animated:true);
         passengersTableView.delegate = self
         passengersTableView.dataSource = self
@@ -153,6 +157,8 @@ class CurrentRideController: UIViewController, UITableViewDelegate, UITableViewD
         
         ref = Database.database().reference()
         ref.child("confirmed").child(self.userID).setValue("true")
+        self.confirmButton.isHidden = true
+        self.finishButton.isHidden = false
     }
     
     @IBAction func finishRide(_ sender: UIButton) {
