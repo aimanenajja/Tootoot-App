@@ -8,6 +8,7 @@
 
 import UIKit
 import Firebase
+import os.log
 
 class ProfileViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
     @IBOutlet weak var imageView: UIImageView!
@@ -19,7 +20,6 @@ class ProfileViewController: UIViewController, UIImagePickerControllerDelegate, 
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
         ref = Database.database().reference()
         let userID = Auth.auth().currentUser?.uid
         ref.child("users").child(userID!).observeSingleEvent(of: .value, with: { (snapshot) in
@@ -34,6 +34,18 @@ class ProfileViewController: UIViewController, UIImagePickerControllerDelegate, 
         
         self.imageView.layer.masksToBounds = true
         self.imageView.layer.cornerRadius = self.imageView.frame.width/2.0
+        // Load any saved meals, otherwise load sample data.
+        if let savedProfile = loadProfile() {
+            profile = savedProfile
+        } else {
+            profile = Profile.init(name: CurrentUserLabel.text ?? "", photo: nil)
+        }
+        
+        if let profile = profile {
+            CurrentUserLabel.text = profile.name
+            imageView.image = profile.photo
+        }
+        
         // Do any additional setup after loading the view.
     }
     
@@ -84,8 +96,23 @@ class ProfileViewController: UIViewController, UIImagePickerControllerDelegate, 
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
         let image = info[UIImagePickerController.InfoKey.originalImage] as! UIImage
         imageView.image = image
+        profile?.photo = image
         
         picker.dismiss(animated: true, completion: nil)
+        saveProfile()
+    }
+    
+    private func saveProfile() {
+        let isSuccessfulSave = NSKeyedArchiver.archiveRootObject(profile!, toFile: Profile.ArchiveURL.path)
+        if isSuccessfulSave {
+            os_log("Meals successfully saved.", log: OSLog.default, type: .debug)
+        } else {
+            os_log("Failed to save meals...", log: OSLog.default, type: .error)
+        }
+    }
+    
+    private func loadProfile() -> Profile?  {
+        return NSKeyedUnarchiver.unarchiveObject(withFile: Profile.ArchiveURL.path) as? Profile
     }
     
 }
