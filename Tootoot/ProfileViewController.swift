@@ -13,6 +13,8 @@ class ProfileViewController: UIViewController, UIImagePickerControllerDelegate, 
     @IBOutlet weak var imageView: UIImageView!
     @IBOutlet weak var CurrentUserLabel: UILabel!
     
+    var profile: Profile? = nil
+    
     var ref: DatabaseReference!
     
     override func viewDidLoad() {

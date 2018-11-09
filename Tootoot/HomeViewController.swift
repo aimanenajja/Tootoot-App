@@ -16,9 +16,6 @@ class HomeViewController: UIViewController {
     @IBOutlet weak var usernameLabel: UILabel!
     @IBOutlet weak var joinRideButton: UIButton!
     @IBOutlet weak var offerRideButton: UIButton!
-    @IBOutlet weak var navigationBar: UINavigationItem!
-    @IBOutlet weak var myProfileLabel: UIBarButtonItem!
-    @IBOutlet weak var logOutLabel: UIBarButtonItem!
     
     var ref: DatabaseReference!
     
