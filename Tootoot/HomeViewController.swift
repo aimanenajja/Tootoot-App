@@ -14,6 +14,11 @@ import FirebaseDatabase
 
 class HomeViewController: UIViewController {
     @IBOutlet weak var usernameLabel: UILabel!
+    @IBOutlet weak var joinRideButton: UIButton!
+    @IBOutlet weak var offerRideButton: UIButton!
+    @IBOutlet weak var navigationBar: UINavigationItem!
+    @IBOutlet weak var myProfileLabel: UIBarButtonItem!
+    @IBOutlet weak var logOutLabel: UIBarButtonItem!
     
     var ref: DatabaseReference!
     
@@ -27,7 +32,7 @@ class HomeViewController: UIViewController {
         ref.child("users").child(userID!).observeSingleEvent(of: .value, with: { (snapshot) in
             // Get user value
             let value = snapshot.value as? NSDictionary
-            print(value)
+            print(value!)
             let username = value?["username"] as? String ?? ""
             
             self.usernameLabel.text = "Welkom, " + username
@@ -36,6 +41,28 @@ class HomeViewController: UIViewController {
         }
         self.title = "Home"
 
+    }
+    
+    override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
+        super.viewWillTransition(to: size, with: coordinator)
+        if UIDevice.current.orientation.isLandscape {
+            print("Landscape")
+            
+            self.usernameLabel.frame.size.height = self.usernameLabel.frame.height * 2
+            self.usernameLabel.font = self.usernameLabel.font.withSize(self.usernameLabel.font.pointSize * 2)
+            self.joinRideButton.frame.size.height = self.joinRideButton.frame.height * 2
+            self.joinRideButton.titleLabel?.font = self.joinRideButton.titleLabel?.font.withSize((self.joinRideButton.titleLabel?.font.pointSize)!*2)
+            self.offerRideButton.frame.size.height = self.offerRideButton.frame.height * 2
+            self.offerRideButton.titleLabel?.font = self.offerRideButton.titleLabel?.font.withSize((self.offerRideButton.titleLabel?.font.pointSize)!*2)
+        } else {
+            print("Portrait")
+            self.usernameLabel.frame.size.height = self.usernameLabel.frame.height / 2
+            self.usernameLabel.font = self.usernameLabel.font.withSize(self.usernameLabel.font.pointSize / 2)
+            self.joinRideButton.frame.size.height = self.joinRideButton.frame.height / 2
+            self.joinRideButton.titleLabel?.font = self.joinRideButton.titleLabel?.font.withSize((self.joinRideButton.titleLabel?.font.pointSize)! / 2)
+            self.offerRideButton.frame.size.height = self.offerRideButton.frame.height / 2
+            self.offerRideButton.titleLabel?.font = self.offerRideButton.titleLabel?.font.withSize((self.offerRideButton.titleLabel?.font.pointSize)! / 2)
+        }
     }
     
     override func viewWillDisappear(_ animated: Bool) {

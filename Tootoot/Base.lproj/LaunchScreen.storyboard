@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14313.18" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" launchScreen="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="01J-lp-oVM">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14460.31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" launchScreen="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="01J-lp-oVM">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14283.14"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14460.20"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -20,16 +20,21 @@
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Launchscreen" translatesAutoresizingMaskIntoConstraints="NO" id="L5P-mw-FGU">
                                 <rect key="frame" x="0.0" y="20" width="375" height="647"/>
                             </imageView>
-                            <imageView userInteractionEnabled="NO" alpha="0.80000000000000004" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="Logo" translatesAutoresizingMaskIntoConstraints="NO" id="KYm-hF-reE">
-                                <rect key="frame" x="0.0" y="183" width="375" height="235"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <imageView userInteractionEnabled="NO" alpha="0.80000000000000004" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Logo" translatesAutoresizingMaskIntoConstraints="NO" id="KYm-hF-reE">
+                                <rect key="frame" x="0.0" y="216" width="375" height="235"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" secondItem="KYm-hF-reE" secondAttribute="height" multiplier="75:47" id="z0M-3F-hk8"/>
+                                </constraints>
                             </imageView>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="L5P-mw-FGU" secondAttribute="bottom" id="0Lt-1S-8BN"/>
+                            <constraint firstItem="KYm-hF-reE" firstAttribute="leading" secondItem="L5P-mw-FGU" secondAttribute="leading" id="1qJ-Aj-DkI"/>
                             <constraint firstItem="L5P-mw-FGU" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" id="28a-xi-Vro"/>
+                            <constraint firstItem="KYm-hF-reE" firstAttribute="centerY" secondItem="Ze5-6b-2t3" secondAttribute="centerY" id="7LS-qY-Ma3"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="L5P-mw-FGU" secondAttribute="trailing" id="WMp-yp-F7f"/>
+                            <constraint firstItem="KYm-hF-reE" firstAttribute="trailing" secondItem="L5P-mw-FGU" secondAttribute="trailing" id="ZXr-MG-OgA"/>
                             <constraint firstItem="L5P-mw-FGU" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="bzN-am-SFy"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>

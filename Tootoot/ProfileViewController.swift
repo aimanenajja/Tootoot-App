@@ -30,7 +30,28 @@ class ProfileViewController: UIViewController, UIImagePickerControllerDelegate, 
             print(error.localizedDescription)
         }
         
+        self.imageView.layer.masksToBounds = true
+        self.imageView.layer.cornerRadius = self.imageView.frame.width/2.0
         // Do any additional setup after loading the view.
+    }
+    
+    override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
+        super.viewWillTransition(to: size, with: coordinator)
+        if UIDevice.current.orientation.isLandscape {
+            print("Landscape")
+            
+            self.CurrentUserLabel.frame.size.height = self.CurrentUserLabel.frame.height * 2
+            print(self.CurrentUserLabel.frame.height)
+            self.CurrentUserLabel.font = self.CurrentUserLabel.font.withSize(self.CurrentUserLabel.font.pointSize*2)
+            self.imageView.layer.cornerRadius = self.imageView.frame.width
+        } else {
+            print("Portrait")
+            self.CurrentUserLabel.frame.size.height = self.CurrentUserLabel.frame.height / 2
+            
+            print(self.CurrentUserLabel.frame.height)
+            self.CurrentUserLabel.font = self.CurrentUserLabel.font.withSize(self.CurrentUserLabel.font.pointSize/2)
+            self.imageView.layer.cornerRadius = self.imageView.frame.width/4.0
+        }
     }
     
     func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
