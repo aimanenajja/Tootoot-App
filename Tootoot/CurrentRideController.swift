@@ -154,16 +154,13 @@ class CurrentRideController: UIViewController, UITableViewDelegate, UITableViewD
     
     @IBAction func confirmPassengers(_ sender: UIButton) {
         
-        ref = Database.database().reference()
-        ref.child("confirmed").child(self.userID).setValue("true")
-    }
-    
-    @IBAction func finishRide(_ sender: UIButton) {
         let userID = Auth.auth().currentUser?.uid
         ref = Database.database().reference()
         ref.child("rides").child(userID!).removeValue()
-        
+        ref.child("confirmed").child(self.userID).setValue("true")
     }
+    
+    
     
     
 }
