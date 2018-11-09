@@ -123,6 +123,7 @@ class RideDetailViewController: UIViewController, UINavigationControllerDelegate
     override func viewDidDisappear(_ animated: Bool) {
         super.viewDidDisappear(animated)
         ref.child("rides").child(driverId).removeAllObservers()
+        ref.child("confirmed").child(driverId).removeAllObservers()
     }
     
     deinit {
