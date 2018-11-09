@@ -38,7 +38,7 @@ class ProfileViewController: UIViewController, UIImagePickerControllerDelegate, 
         if let savedProfile = loadProfile() {
             profile = savedProfile
         } else {
-            profile = Profile.init(name: CurrentUserLabel.text ?? "", photo: nil)
+            profile = Profile.init(name: CurrentUserLabel.text ?? "", photo: UIImage(named: "defaultPhoto"))
         }
         
         if let profile = profile {
