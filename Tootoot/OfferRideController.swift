@@ -10,7 +10,7 @@ import UIKit
 import Firebase
 import CoreLocation
 
-class OfferRideController: UIViewController, CLLocationManagerDelegate {
+class OfferRideController: UIViewController, CLLocationManagerDelegate, UITextFieldDelegate, UITextViewDelegate {
     @IBOutlet weak var carTextField: UITextField!
     @IBOutlet weak var endLocation: UITextField!
     @IBOutlet weak var comments: UITextView!
@@ -29,6 +29,11 @@ class OfferRideController: UIViewController, CLLocationManagerDelegate {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        endLocation.delegate = self
+        carTextField.delegate = self
+        comments.delegate = self
+        
         ref = Database.database().reference()
         
         
@@ -56,7 +61,19 @@ class OfferRideController: UIViewController, CLLocationManagerDelegate {
             }
         }
         self.title = "Offer Ride"
+        
+        // Listen for keyboard events
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillChange(notification:)), name: UIResponder.keyboardWillShowNotification, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillChange(notification:)), name: UIResponder.keyboardWillHideNotification, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillChange(notification:)), name: UIResponder.keyboardWillChangeFrameNotification, object: nil)
 
+    }
+    
+    deinit {
+        //  stop listening for keyboard events
+        NotificationCenter.default.removeObserver(self, name: UIResponder.keyboardWillShowNotification, object: nil)
+        NotificationCenter.default.removeObserver(self, name: UIResponder.keyboardWillHideNotification, object: nil)
+        NotificationCenter.default.removeObserver(self, name: UIResponder.keyboardWillChangeFrameNotification, object: nil)
     }
     
     func locationManager(_ manager: CLLocationManager, didChangeAuthorization status: CLAuthorizationStatus) {
@@ -126,6 +143,35 @@ class OfferRideController: UIViewController, CLLocationManagerDelegate {
         comments.resignFirstResponder()
     }
     
+    @objc func keyboardWillChange(notification: Notification){
+        
+        guard let keyboardRect = (notification.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue)?.cgRectValue else {
+            return
+        }
+        
+        if comments == view.window?.firstResponder {
+            if notification.name == UIResponder.keyboardWillShowNotification || notification.name == UIResponder.keyboardWillChangeFrameNotification {
+                view.frame.origin.y = -keyboardRect.height
+            } else {
+                view.frame.origin.y = 0
+            }
+        }
+    }
+    
+    func textView(_ textView: UITextView, shouldChangeTextIn range: NSRange, replacementText text: String) -> Bool {
+        if(text == "\n") {
+            textView.resignFirstResponder()
+            return false
+        }
+        return true
+    }
+    
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        endLocation.resignFirstResponder()
+        carTextField.resignFirstResponder()
+        return true
+    }
+    
 }
 
 extension CLPlacemark {
@@ -140,5 +186,19 @@ extension CLPlacemark {
         return result
     }
     
+}
+
+extension UIView {
+    var firstResponder: UIView? {
+        guard !isFirstResponder else { return self }
+        
+        for subview in subviews {
+            if let firstResponder = subview.firstResponder {
+                return firstResponder
+            }
+        }
+        
+        return nil
+    }
 }
 

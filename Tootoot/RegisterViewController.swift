@@ -11,7 +11,7 @@ import Firebase
 import FirebaseAuth
 import FirebaseDatabase
 
-class RegisterViewController: UIViewController {
+class RegisterViewController: UIViewController, UITextFieldDelegate {
 
       var ref: DatabaseReference!
     
@@ -31,8 +31,14 @@ class RegisterViewController: UIViewController {
     @IBOutlet weak var signInButton: UIButton!
     
     var isSignIn:Bool = true
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        usernameTextField.delegate = self
+        emailTextField.delegate = self
+        passwordTextField.delegate = self
+        
         let firebaseAuth = Auth.auth()
         do {
             try firebaseAuth.signOut()
@@ -142,6 +148,16 @@ class RegisterViewController: UIViewController {
             self.defaults.set(false, forKey: "Remember")
         }
     }
+    
+    // UITextFieldDelegate Methods
+    
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        usernameTextField.resignFirstResponder()
+        emailTextField.resignFirstResponder()
+        passwordTextField.resignFirstResponder()
+        return true
+    }
+    
 }
     /*
     // MARK: - Navigation

@@ -10,7 +10,7 @@ import UIKit
 import Firebase
 import CoreLocation
 
-class RideDetailViewController: UIViewController, UINavigationControllerDelegate, CLLocationManagerDelegate {
+class RideDetailViewController: UIViewController, UINavigationControllerDelegate, CLLocationManagerDelegate, UITextFieldDelegate {
 
     //MARK: Properties
     @IBOutlet weak var driverLabel: UILabel!
@@ -36,10 +36,11 @@ class RideDetailViewController: UIViewController, UINavigationControllerDelegate
     var distance : Double = 0
     var confirmed : Bool = false
     
-    
-    
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        yourDestinationTextField.delegate = self
+        
         ref = Database.database().reference()
         
         // Set up views if editing an existing Meal.
@@ -109,8 +110,21 @@ class RideDetailViewController: UIViewController, UINavigationControllerDelegate
         
         
         self.title = "Ride Details"
+        
+        // Listen for keyboard events
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillChange(notification:)), name: UIResponder.keyboardWillShowNotification, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillChange(notification:)), name: UIResponder.keyboardWillHideNotification, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillChange(notification:)), name: UIResponder.keyboardWillChangeFrameNotification, object: nil)
+        
 
         // Do any additional setup after loading the view.
+    }
+    
+    deinit {
+        //  stop listening for keyboard events
+        NotificationCenter.default.removeObserver(self, name: UIResponder.keyboardWillShowNotification, object: nil)
+        NotificationCenter.default.removeObserver(self, name: UIResponder.keyboardWillHideNotification, object: nil)
+        NotificationCenter.default.removeObserver(self, name: UIResponder.keyboardWillChangeFrameNotification, object: nil)
     }
     
     @IBAction func SendJoinRequestButton(_ sender: UIButton) {
@@ -236,4 +250,29 @@ class RideDetailViewController: UIViewController, UINavigationControllerDelegate
             }
         }
     }
+    
+     // UITextFieldDelegate Methods
+    
+    @objc func keyboardWillChange(notification: Notification){
+        
+        guard let keyboardRect = (notification.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue)?.cgRectValue else {
+            return
+        }
+        
+        if notification.name == UIResponder.keyboardWillShowNotification || notification.name == UIResponder.keyboardWillChangeFrameNotification {
+            view.frame.origin.y = -keyboardRect.height
+        } else {
+            view.frame.origin.y = 0
+        }
+        
+        
+    }
+    
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        yourDestinationTextField.resignFirstResponder()
+        return true
+    }
+    
+    
+    
 }
