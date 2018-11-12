@@ -480,7 +480,7 @@
                                                         <rect key="frame" x="168" y="0.0" width="153" height="30"/>
                                                         <nil key="textColor"/>
                                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                                        <textInputTraits key="textInputTraits"/>
+                                                        <textInputTraits key="textInputTraits" returnKeyType="done" enablesReturnKeyAutomatically="YES"/>
                                                     </textField>
                                                 </subviews>
                                                 <color key="backgroundColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -1153,7 +1153,7 @@
         <image name="defaultPhoto" width="1080" height="1080"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="WkH-6h-xEE"/>
+        <segue reference="EP5-QN-woP"/>
         <segue reference="Qsa-yR-oMI"/>
     </inferredMetricsTieBreakers>
 </document>
