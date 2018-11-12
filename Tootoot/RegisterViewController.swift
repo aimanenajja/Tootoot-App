@@ -65,8 +65,20 @@ class RegisterViewController: UIViewController, UITextFieldDelegate {
         
         self.navigationController?.setNavigationBarHidden(false, animated: false)
         self.title = "Tootoot"
+        
+        // Listen for keyboard events
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillChange(notification:)), name: UIResponder.keyboardWillShowNotification, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillChange(notification:)), name: UIResponder.keyboardWillHideNotification, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillChange(notification:)), name: UIResponder.keyboardWillChangeFrameNotification, object: nil)
 
         // Do any additional setup after loading the view.
+    }
+    
+    deinit {
+        //  stop listening for keyboard events
+        NotificationCenter.default.removeObserver(self, name: UIResponder.keyboardWillShowNotification, object: nil)
+        NotificationCenter.default.removeObserver(self, name: UIResponder.keyboardWillHideNotification, object: nil)
+        NotificationCenter.default.removeObserver(self, name: UIResponder.keyboardWillChangeFrameNotification, object: nil)
     }
     
 
@@ -150,6 +162,23 @@ class RegisterViewController: UIViewController, UITextFieldDelegate {
     }
     
     // UITextFieldDelegate Methods
+    
+    @objc func keyboardWillChange(notification: Notification){
+        
+        guard let keyboardRect = (notification.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue)?.cgRectValue else {
+            return
+        }
+        
+        if UIDevice.current.orientation.isLandscape {
+            if notification.name == UIResponder.keyboardWillShowNotification || notification.name == UIResponder.keyboardWillChangeFrameNotification {
+                view.frame.origin.y = -keyboardRect.height
+            } else {
+                view.frame.origin.y = 0
+            }
+        }
+        
+        
+    }
     
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         usernameTextField.resignFirstResponder()

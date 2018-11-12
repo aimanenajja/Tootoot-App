@@ -120,6 +120,11 @@ class RideDetailViewController: UIViewController, UINavigationControllerDelegate
         // Do any additional setup after loading the view.
     }
     
+    override func viewDidDisappear(_ animated: Bool) {
+        super.viewDidDisappear(animated)
+        ref.child("rides").child(driverId).removeAllObservers()
+    }
+    
     deinit {
         //  stop listening for keyboard events
         NotificationCenter.default.removeObserver(self, name: UIResponder.keyboardWillShowNotification, object: nil)
@@ -211,34 +216,39 @@ class RideDetailViewController: UIViewController, UINavigationControllerDelegate
     
     func notifyUser(_driverID : String){
         
+        
+        // observet wanneer je wordt geweigerd
         ref.child("rides").child(_driverID).observe(DataEventType.value) { (snapshot) in
             print(snapshot)
             if snapshot.exists()
             {
-            if snapshot.hasChild("passengers")
-            {
-                print("test")
-                if !snapshot.hasChild("passengers/" + self.uid)
+                if snapshot.hasChild("passengers")
                 {
-                    print("Test2")
+                    print("test")
+                    if !snapshot.hasChild("passengers/" + self.uid)
+                    {
+                        print("Test2")
+                        let alert = UIAlertController(title: "Denied!", message: "You got denied by the driver", preferredStyle: .alert)
+                        alert.addAction(UIAlertAction(title: "Ok", style: .default, handler: { action in
+                            self.performSegue(withIdentifier: "confirmed", sender: nil)
+                        }))
+                        self.present(alert, animated: true)
+                    }
+                } else
+                {
+                    print("Er zijn geen passengers")
                     let alert = UIAlertController(title: "Denied!", message: "You got denied by the driver", preferredStyle: .alert)
                     alert.addAction(UIAlertAction(title: "Ok", style: .default, handler: { action in
                         self.performSegue(withIdentifier: "confirmed", sender: nil)
                     }))
                     self.present(alert, animated: true)
                 }
-            } else
-            {
-                print("Er zijn geen passengers")
-                let alert = UIAlertController(title: "Denied!", message: "You got denied by the driver", preferredStyle: .alert)
-                alert.addAction(UIAlertAction(title: "Ok", style: .default, handler: { action in
-                    self.performSegue(withIdentifier: "confirmed", sender: nil)
-                }))
-                self.present(alert, animated: true)
             }
         }
-        }
         
+        
+    
+        // observeert wanneer je wordt geaccepteerd
         ref.child("confirmed").child(_driverID).observe(DataEventType.value){ (snapshot) in
             print(snapshot)
             if (snapshot.value as? String == "true") {

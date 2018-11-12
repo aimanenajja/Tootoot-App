@@ -33,7 +33,13 @@ class ProfileViewController: UIViewController, UIImagePickerControllerDelegate, 
         }
         
         self.imageView.layer.masksToBounds = true
-        self.imageView.layer.cornerRadius = self.imageView.frame.width/2.0
+        if UIDevice.current.orientation.isLandscape {
+            self.imageView.layer.cornerRadius = self.imageView.frame.width
+            self.CurrentUserLabel.font = self.CurrentUserLabel.font.withSize(self.CurrentUserLabel.font.pointSize*2)
+        } else {
+            self.imageView.layer.cornerRadius = self.imageView.frame.width/2.0
+        }
+        
         // Load any saved meals, otherwise load sample data.
         if let savedProfile = loadProfile() {
             profile = savedProfile
